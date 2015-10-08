@@ -5,7 +5,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// testandoEvandro
 /*
  * 001 - Banco do Brasil S.A.
  * 341 - Itaú Unibanco S.A.
