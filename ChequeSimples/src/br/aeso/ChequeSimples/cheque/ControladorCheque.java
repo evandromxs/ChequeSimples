@@ -1,5 +1,5 @@
 package br.aeso.ChequeSimples.cheque;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import br.aeso.ChequeSimples.excecoes.ChequeJaCadastradoException;
@@ -10,7 +10,7 @@ import br.aeso.ChequeSimples.excecoes.ChequesVazioException;
 public class ControladorCheque {
 	private IRepositorioCheque repositorioCheque;
 	
-	public ControladorCheque() throws IOException {
+	public ControladorCheque() {
 		this.repositorioCheque = new RepositorioChequeArrayList();
 	}
 	

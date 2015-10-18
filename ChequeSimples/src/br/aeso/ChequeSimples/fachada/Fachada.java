@@ -1,5 +1,5 @@
 package br.aeso.ChequeSimples.fachada;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import br.aeso.ChequeSimples.banco.Banco;
@@ -34,14 +34,14 @@ public class Fachada {
 	private ControladorFuncionario controladorFuncionario;
 
 	
-	private Fachada() throws IOException {
+	private Fachada() {
 		this.controladorBanco = new ControladorBanco();
 		this.controladorCheque = new ControladorCheque();
 		this.controladorCliente = new ControladorCliente();
 		this.controladorFuncionario = new ControladorFuncionario();
 	}
 	
-	public static Fachada getInstance() throws IOException {
+	public static Fachada getInstance() {
 		if (Fachada.instance == null) {
 			Fachada.instance = new Fachada();
 		}

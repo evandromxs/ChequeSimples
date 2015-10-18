@@ -1,5 +1,5 @@
 package br.aeso.ChequeSimples.cliente;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import br.aeso.ChequeSimples.excecoes.ClienteJaCadastradoException;
@@ -10,7 +10,7 @@ import br.aeso.ChequeSimples.excecoes.ClientesVazioException;
 public class ControladorCliente {
 	private IRepositorioCliente repositorioCliente;
 	
-	public ControladorCliente() throws IOException {
+	public ControladorCliente() {
 		this.repositorioCliente = new RepositorioClienteArrayList();
 	}
 	

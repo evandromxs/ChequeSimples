@@ -1,5 +1,5 @@
 package br.aeso.ChequeSimples.funcionario;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import br.aeso.ChequeSimples.excecoes.FuncionarioJaCadastradoException;
@@ -10,7 +10,7 @@ import br.aeso.ChequeSimples.excecoes.FuncionariosVazioException;
 public class ControladorFuncionario {
 	private IRepositorioFuncionario repositorioFuncionario;
 	
-	public ControladorFuncionario() throws IOException {
+	public ControladorFuncionario() {
 		this.repositorioFuncionario = new RepositorioFuncionarioArrayList();
 	}
 	

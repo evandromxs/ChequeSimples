@@ -1,5 +1,5 @@
 package br.aeso.ChequeSimples.banco;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import br.aeso.ChequeSimples.excecoes.BancoJaCadastradoException;
@@ -10,7 +10,7 @@ import br.aeso.ChequeSimples.excecoes.CampoObrigatorioInvalidoException;
 public class ControladorBanco {
 	private IRepositorioBanco repositorioBanco;
 	
-	public ControladorBanco() throws IOException {
+	public ControladorBanco() {
 		this.repositorioBanco = new RepositorioBancoArrayList();
 	}
 	
