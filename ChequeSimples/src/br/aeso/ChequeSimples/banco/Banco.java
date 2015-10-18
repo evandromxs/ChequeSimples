@@ -1,7 +1,5 @@
 package br.aeso.ChequeSimples.banco;
-// Swio
-// Comenntario
-//ggg
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +12,7 @@ import java.util.Date;
  * 033 - Banco Santander S.A.
 */
 
-public class Banco implements java.io.Serializable{
+public class Banco {
 	private int id;
 	private String codigo;
 	private String nome;
