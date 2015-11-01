@@ -1,6 +1,9 @@
 package br.aeso.ChequeSimples.cliente;
 
+import java.sql.Connection;
 import java.util.ArrayList;
+
+import com.mysql.jdbc.PreparedStatement;
 
 import br.aeso.ChequeSimples.excecoes.BancosVazioException;
 import br.aeso.ChequeSimples.excecoes.ClienteJaCadastradoException;
@@ -17,10 +20,25 @@ public class RepositorioClienteArrayList implements IRepositorioCliente {
 	@Override
 	public void cadastrar(Cliente cliente) throws ClienteJaCadastradoException {
 	  	// Verifica se o cliente existe no repositório
-    	if (existe(cliente.getCpf())) throw new ClienteJaCadastradoException();
+    	if (existe(cliente.getCpf())){
+    		throw new ClienteJaCadastradoException();
+    	} 
 		
 		clientes.add(cliente);
 		cliente.setId(clientes.indexOf(cliente));
+		
+		/*
+		String sql = "INSERT INTO cliente (razao_social) VALUES (?)";
+		
+		PreparedStatement prepSt = null;
+	
+		prepSt = preparedStatement(sql);
+		
+		prepSt.setString(1, cliente.getNome());
+		
+		prepSt.executeUpdate();
+		*/
+		
 	}
 
 	@Override

@@ -27,6 +27,8 @@ public class Endereco{
 		this.cep = cep;
 		this.data_cadastro = data_cadastro;
 	}
+	
+	public Endereco(){}
 
 	public int getId() {
 		return id;

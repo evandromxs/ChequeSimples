@@ -4,16 +4,22 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import br.aeso.ChequeSimples.endereco.Endereco;
+
 public class Cliente {
 	private Integer id;
     private String nome;
     private String cpf;
-    private String data_cadastro = getDataHoje();
+    private String dataCadastro = "";
+    private Endereco endereco = null;
+    
     
     public Cliente(String nome, String cpf) {
         this.setNome(nome);
         this.setCpf(cpf);
     }
+    
+    public Cliente(){}
     
     public Integer getId() {
         return id;
@@ -34,8 +40,27 @@ public class Cliente {
     public String getCpf() {
         return cpf;
     }
-    
-    public String getCpfFormatado() {
+        
+    public String getDataCadastro() {
+		return dataCadastro = getDataHoje();
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+	
+	public Endereco getEndereco() {
+		if(endereco == null){
+			this.endereco = new Endereco();
+		}	
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getCpfFormatado() {
         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
     }
     
