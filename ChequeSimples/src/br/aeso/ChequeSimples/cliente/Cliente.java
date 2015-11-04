@@ -8,11 +8,12 @@ import br.aeso.ChequeSimples.endereco.Endereco;
 
 public class Cliente {
 	private Integer id;
-    private String nome;
-    private String cpf;
-    private String dataCadastro = "";
-    private Endereco endereco = null;
-    
+    private String pessoa;
+    private String cpf_cnpj;
+    private String nome_razaoSocial;
+    private byte bloqueado;
+    private int id_endereco;
+    private String data_cadastro = getDataHoje();
     
     public Cliente(String nome, String cpf) {
         this.setNome(nome);
