@@ -6,8 +6,11 @@ import java.util.Date;
 
 public class Cliente {
 	private Integer id;
-    private String nome;
-    private String cpf;
+    private String pessoa;
+    private String cpf_cnpj;
+    private String nome_razaoSocial;
+    private byte bloqueado;
+    private int id_endereco;
     private String data_cadastro = getDataHoje();
     
     public Cliente(String nome, String cpf) {
