@@ -300,7 +300,7 @@ public class FrameCadastroCliente extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			} 
 		});
 	}
 

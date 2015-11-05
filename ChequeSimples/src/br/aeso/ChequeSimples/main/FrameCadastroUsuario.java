@@ -156,7 +156,6 @@ public class FrameCadastroUsuario extends JFrame {
 		contentPaneTCadUsu.setLayout(gl_contentPaneTCadUsu);
 	}
 	
-
 	/**
 	 * Launch the application.
 	 */
