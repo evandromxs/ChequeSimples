@@ -101,8 +101,27 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
       return resposta;
 	}
 
-	private int getIndice(String cpf) {
+	private int getIndice(String cpf_cnpj) {
 	        int resposta = -1;
+
+	        String sql ="select * from cliente where cpf_cnpj = ?";
+	        // Criar o PreparedStatement, objeto para executar a query
+	        PreparedStatement preStatement = conexao.prepareStatement(sql);
+	        
+	        preStatement.setInt(1, 2);
+	        // Executando o select
+	        ResultSet resultSet = preStatement.executeQuery();
+	        
+	        while(resultSet.next()){
+	        	if(resultSet.getString(3).eq){
+	        		resultSet.getString(1);
+	        	}
+	        }
+	        
+	        
+	        
+	        
+	        
 //	        for(Cliente c : clientes){
 //	            if (c.getCpf().equals(cpf)) {
 //	                resposta = c.getId();
