@@ -18,7 +18,7 @@ public class ControladorCliente {
 		//Validações das informações.
 		if (cliente == null) {
 			throw new IllegalArgumentException("Cliente nulo.");
-		}else if (cliente.getNome() == "") {
+		}else if (cliente.getNome_razaoSocial() == "") {
 			throw new CampoObrigatorioInvalidoException("Nome do cliente é nulo ou Inválido.");
 		}else{
 		//Cadastrando o cliente.
@@ -28,7 +28,7 @@ public class ControladorCliente {
 	
 	public void atualizar(Cliente cliente) throws CampoObrigatorioInvalidoException, ClienteNaoEncontradoException {
 		//Validações da classe Cliente.
-		if (cliente.getNome() == "") {
+		if (cliente.getNome_razaoSocial() == "") {
 			throw new CampoObrigatorioInvalidoException("Nome do cliente é nulo ou Inválido.");
 		}else{
 			this.repositorioCliente.atualizar(cliente);

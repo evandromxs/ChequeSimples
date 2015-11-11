@@ -13,11 +13,11 @@ public class Cliente {
     private String nome_razaoSocial;
     private byte bloqueado;
     private int id_endereco;
-    private String data_cadastro = getDataHoje();
+    private String dataCadastro = getDataHoje();
     
-    public Cliente(String nome, String cpf) {
-        this.setNome(nome);
-        this.setCpf(cpf);
+    public Cliente(String nomeRazaoSocial, String cpf_cnpj) {
+        this.setNome_razaoSocial(nomeRazaoSocial);
+        this.setCpf_cnpj(cpf_cnpj);
     }
     
     public Cliente(){}
@@ -29,18 +29,6 @@ public class Cliente {
     public void setId(Integer id) {
         this.id = id;
     }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    public String getCpf() {
-        return cpf;
-    }
         
     public String getDataCadastro() {
 		return dataCadastro = getDataHoje();
@@ -50,34 +38,74 @@ public class Cliente {
 		this.dataCadastro = dataCadastro;
 	}
 	
-	public Endereco getEndereco() {
-		if(endereco == null){
-			this.endereco = new Endereco();
-		}	
-		return endereco;
-	}
+//	public Endereco getEndereco() {
+//		if(endereco == null){
+//			this.endereco = new Endereco();
+//		}	
+//		return endereco;
+//	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 
-	public String getCpfFormatado() {
-        return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
-    }
-    
-    public void setCpf(String cpf) {
-    	this.cpf = cpf.replaceAll("\\.|\\-|\\ ", "");
-    }
+//	public String getCpfFormatado() {
+//        return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
+//    }
+//    
+//    public void setCpf(String cpf) {
+//    	this.cpf = cpf.replaceAll("\\.|\\-|\\ ", "");
+//    }
 
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome +", cpf=" + cpf +"]";
-	}
-	
+//	@Override
+//	public String toString() {
+//		return "Cliente [id=" + id + ", nome=" + nome +", cpf=" + cpf +"]";
+//	}
+//	
 	public String getDataHoje() {
 		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = new Date();
 		
 		return formato.format(data);
+	}
+
+	public String getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(String pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public String getCpf_cnpj() {
+		return cpf_cnpj;
+	}
+
+	public void setCpf_cnpj(String cpf_cnpj) {
+		this.cpf_cnpj = cpf_cnpj;
+	}
+
+	public String getNome_razaoSocial() {
+		return nome_razaoSocial;
+	}
+
+	public void setNome_razaoSocial(String nome_razaoSocial) {
+		this.nome_razaoSocial = nome_razaoSocial;
+	}
+
+	public byte getBloqueado() {
+		return bloqueado;
+	}
+
+	public void setBloqueado(byte bloqueado) {
+		this.bloqueado = bloqueado;
+	}
+
+	public int getId_endereco() {
+		return id_endereco;
+	}
+
+	public void setId_endereco(int id_endereco) {
+		this.id_endereco = id_endereco;
 	}
 }
