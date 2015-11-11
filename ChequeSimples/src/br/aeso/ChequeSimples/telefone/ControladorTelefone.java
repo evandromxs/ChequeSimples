@@ -1,5 +1,4 @@
 package br.aeso.ChequeSimples.telefone;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import br.aeso.ChequeSimples.excecoes.TelefoneJaCadastradoException;
@@ -10,7 +9,7 @@ import br.aeso.ChequeSimples.excecoes.CampoObrigatorioInvalidoException;
 public class ControladorTelefone {
 	private IRepositorioTelefone repositorioTelefone;
 	
-	public ControladorTelefone() throws IOException {
+	public ControladorTelefone() {
 		this.repositorioTelefone = new RepositorioTelefoneArrayList();
 	}
 	

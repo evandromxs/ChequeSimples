@@ -13,9 +13,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.aeso.ChequeSimples.cliente.Cliente;
 import br.aeso.ChequeSimples.cliente.ControladorCliente;
+import br.aeso.ChequeSimples.endereco.Endereco;
 import br.aeso.ChequeSimples.enums.EstadosBrasileirosEnum;
+import br.aeso.ChequeSimples.excecoes.CPFInvalidoException;
 import br.aeso.ChequeSimples.excecoes.CampoObrigatorioInvalidoException;
 import br.aeso.ChequeSimples.excecoes.ClienteJaCadastradoException;
+import br.aeso.ChequeSimples.excecoes.EnderecoJaCadastradoException;
+import br.aeso.ChequeSimples.fachada.Fachada;
 
 public class FrameCadastroCliente extends JFrame {
 
@@ -137,30 +141,36 @@ public class FrameCadastroCliente extends JFrame {
 		btnTCadCli_Salvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Cliente novoCliente = new Cliente();
+				Endereco novoEndereco = new Endereco();
 				
-				novoCliente.setNome(textFieldTCadCli_NomeRazao.getText());
-				novoCliente.setCpf(textFieldTCadCli_CpfCnpj.getText());
-				novoCliente.getEndereco().setLogradouro(textFieldTCadCli_Logradouro.getText());
-				novoCliente.getEndereco().setNumero(Integer.parseInt(textFieldTCadCli_NumeroEndereco.getText()));
-				novoCliente.getEndereco().setBairro(textFieldTCadCli_Bairro.getText());
-				novoCliente.getEndereco().setCidade(textFieldTCadCli_Cidade.getText());
-				novoCliente.getEndereco().setEstado(comboBoxTCadCli_Estado.getSelectedItem().toString());
-				novoCliente.getEndereco().setCep(textFieldTCadCli_Cep.getText());
-				ControladorCliente controladorCliente = new ControladorCliente();
+				novoCliente.setNome_razaoSocial(textFieldTCadCli_NomeRazao.getText());
+				novoCliente.setCpf_cnpj(textFieldTCadCli_CpfCnpj.getText());
+				
+				novoEndereco.setLogradouro(textFieldTCadCli_Logradouro.getText());
+				novoEndereco.setNumero(Integer.parseInt(textFieldTCadCli_NumeroEndereco.getText()));
+				novoEndereco.setBairro(textFieldTCadCli_Bairro.getText());
+				novoEndereco.setCidade(textFieldTCadCli_Cidade.getText());
+				novoEndereco.setEstado(comboBoxTCadCli_Estado.getSelectedItem().toString());
+				novoEndereco.setCep(textFieldTCadCli_Cep.getText());
+				
+				//instanciando a Fachada para chamar o método cadastrar cliente
+				Fachada fachada = Fachada.getInstance();
 				
 				try {
-					controladorCliente.cadastrar(novoCliente);
+					fachada.cadastrarCliente(novoCliente);
+					
+				//Pegando o id que está no BD do novo Cliente e setando para o Endereço
+					novoEndereco.setIdCliente(novoCliente.getId());
+					fachada.cadastrarEndereco(novoEndereco);
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-//					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (ClienteJaCadastradoException e) {
-					// TODO Auto-generated catch block
-//					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (CampoObrigatorioInvalidoException e) {
-					// TODO Auto-generated catch block
-//					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				} catch (CPFInvalidoException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				} catch (EnderecoJaCadastradoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 				

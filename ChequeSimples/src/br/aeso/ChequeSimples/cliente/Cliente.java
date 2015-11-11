@@ -13,6 +13,7 @@ public class Cliente {
     private String nome_razaoSocial;
     private byte bloqueado;
     private int id_endereco;
+    private Endereco endereco;
     private String dataCadastro = getDataHoje();
     
     public Cliente(String nomeRazaoSocial, String cpf_cnpj) {
@@ -107,5 +108,13 @@ public class Cliente {
 
 	public void setId_endereco(int id_endereco) {
 		this.id_endereco = id_endereco;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

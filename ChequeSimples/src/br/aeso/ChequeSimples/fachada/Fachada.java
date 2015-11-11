@@ -8,8 +8,12 @@ import br.aeso.ChequeSimples.cheque.Cheque;
 import br.aeso.ChequeSimples.cheque.ControladorCheque;
 import br.aeso.ChequeSimples.cliente.Cliente;
 import br.aeso.ChequeSimples.cliente.ControladorCliente;
+import br.aeso.ChequeSimples.endereco.ControladorEndereco;
+import br.aeso.ChequeSimples.endereco.Endereco;
 import br.aeso.ChequeSimples.funcionario.ControladorFuncionario;
 import br.aeso.ChequeSimples.funcionario.Funcionario;
+import br.aeso.ChequeSimples.telefone.ControladorTelefone;
+import br.aeso.ChequeSimples.telefone.Telefone;
 import br.aeso.ChequeSimples.excecoes.BancosVazioException;
 import br.aeso.ChequeSimples.excecoes.CampoObrigatorioInvalidoException;
 import br.aeso.ChequeSimples.excecoes.CPFInvalidoException;
@@ -18,13 +22,18 @@ import br.aeso.ChequeSimples.excecoes.ChequeJaCadastradoException;
 import br.aeso.ChequeSimples.excecoes.ChequesVazioException;
 import br.aeso.ChequeSimples.excecoes.ClienteJaCadastradoException;
 import br.aeso.ChequeSimples.excecoes.ClientesVazioException;
+import br.aeso.ChequeSimples.excecoes.EnderecoJaCadastradoException;
+import br.aeso.ChequeSimples.excecoes.EnderecoNaoEncontradoException;
+import br.aeso.ChequeSimples.excecoes.EnderecosVazioException;
 import br.aeso.ChequeSimples.excecoes.FuncionarioJaCadastradoException;
 import br.aeso.ChequeSimples.excecoes.BancoNaoEncontradoException;
 import br.aeso.ChequeSimples.excecoes.ChequeNaoEncontradoException;
 import br.aeso.ChequeSimples.excecoes.ClienteNaoEncontradoException;
 import br.aeso.ChequeSimples.excecoes.FuncionarioNaoEncontradoException;
 import br.aeso.ChequeSimples.excecoes.FuncionariosVazioException;
-import br.aeso.ChequeSimples.excecoes.IdadeInvalidaException;
+import br.aeso.ChequeSimples.excecoes.TelefoneJaCadastradoException;
+import br.aeso.ChequeSimples.excecoes.TelefoneNaoEncontradoException;
+import br.aeso.ChequeSimples.excecoes.TelefonesVazioException;
 
 public class Fachada {
 	private static Fachada instance;
@@ -32,6 +41,8 @@ public class Fachada {
 	private ControladorCheque controladorCheque;
 	private ControladorCliente controladorCliente;
 	private ControladorFuncionario controladorFuncionario;
+	private ControladorEndereco controladorEndereco;
+	private ControladorTelefone controladorTelefone;
 
 	
 	private Fachada() {
@@ -39,6 +50,8 @@ public class Fachada {
 		this.controladorCheque = new ControladorCheque();
 		this.controladorCliente = new ControladorCliente();
 		this.controladorFuncionario = new ControladorFuncionario();
+		this.controladorEndereco = new ControladorEndereco();
+		this.controladorTelefone = new ControladorTelefone();
 	}
 	
 	public static Fachada getInstance() {
@@ -102,7 +115,7 @@ public class Fachada {
 	
 	//Métodos entidade Cliente.
 	
-	public void cadastrarCliente(Cliente cliente) throws IllegalArgumentException, CPFInvalidoException, ClienteJaCadastradoException, CampoObrigatorioInvalidoException, IdadeInvalidaException { 
+	public void cadastrarCliente(Cliente cliente) throws IllegalArgumentException, CPFInvalidoException, ClienteJaCadastradoException, CampoObrigatorioInvalidoException { 
 		this.controladorCliente.cadastrar(cliente);
 	}
 	
@@ -150,6 +163,60 @@ public class Fachada {
 	
 	public boolean listaVaziaFuncionario(){
 		boolean resposta = this.controladorFuncionario.listaVazia();
+		return resposta;
+	}
+	
+	//Métodos entidade Endereco.
+	
+	public void cadastrarEndereco(Endereco endereco) throws EnderecoJaCadastradoException, CampoObrigatorioInvalidoException { 
+		this.controladorEndereco.cadastrar(endereco);
+	}
+	
+	public void atualizarEndereco(Endereco endereco) throws CampoObrigatorioInvalidoException, EnderecoNaoEncontradoException { 
+		this.controladorEndereco.atualizar(endereco);
+	}
+
+	public void removerEndereco(int idEndereco) throws EnderecoNaoEncontradoException { 
+		this.controladorEndereco.remover(idEndereco);
+	}
+	
+	public Endereco procurarEndereco(int idEndereco) throws EnderecoNaoEncontradoException { 
+		return this.controladorEndereco.procurar(idEndereco);
+	}
+
+	public ArrayList<Endereco> listarEndereco() throws EnderecosVazioException { 
+		return this.controladorEndereco.listar();
+	}
+	
+	public boolean listaVaziaEndereco(){
+		boolean resposta = this.controladorEndereco.listaVazia();
+		return resposta;
+	}
+
+	//Métodos entidade Telefone.
+	
+	public void cadastrarTelefone(Telefone telefone) throws IllegalArgumentException, TelefoneJaCadastradoException, CampoObrigatorioInvalidoException { 
+		this.controladorTelefone.cadastrar(telefone);
+	}
+	
+	public void atualizarTelefone(Telefone telefone) throws CampoObrigatorioInvalidoException, TelefoneNaoEncontradoException { 
+		this.controladorTelefone.atualizar(telefone);
+	}
+
+	public void removerTelefone(String ddd, String telefone) throws TelefoneNaoEncontradoException { 
+		this.controladorTelefone.remover(ddd, telefone);
+	}
+	
+	public Telefone procurarTelefone(String ddd, String telefone) throws TelefoneNaoEncontradoException { 
+		return this.controladorTelefone.procurar(ddd, telefone);
+	}
+
+	public ArrayList<Telefone> listarTelefone() throws TelefonesVazioException { 
+		return this.controladorTelefone.listar();
+	}
+	
+	public boolean listaVaziaTelefone(){
+		boolean resposta = this.controladorTelefone.listaVazia();
 		return resposta;
 	}
 }
