@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import br.aeso.ChequeSimples.cliente.Cliente;
 import br.aeso.ChequeSimples.excecoes.ClienteJaCadastradoException;
-import br.aeso.ChequeSimples.excecoes.ClienteNaoEncontradoException;
 import br.aeso.ChequeSimples.excecoes.CampoObrigatorioInvalidoException;
 import br.aeso.ChequeSimples.fachada.Fachada;
 
@@ -17,7 +16,8 @@ public class TelaCliente {
 		Fachada fachada = Fachada.getInstance();
 		Scanner teclado = new Scanner(System.in);
 		int escolha = 0;
-		String certeza, nome, cpf;
+		String certeza, pessoa, cpf_cnpj, nome_razaoSocial;
+		byte bloqueado;
 		Cliente cliente;
 		ArrayList<Cliente> listaClientes;
 		while(true) {
@@ -33,47 +33,53 @@ public class TelaCliente {
 				escolha = teclado.nextInt();
 				// Cadastrar Cliente
 				if (escolha == 1) {
-					System.out.print("Entre com o Nome: ");
-					nome = teclado.next();
+					System.out.print("Pessoa: ");
+					pessoa = teclado.next();
 					//teclado.next();
-					System.out.print("Entre com o CPF: ");
-					cpf = teclado.next();
+					System.out.print("CPF: ");
+					cpf_cnpj = teclado.next();
 					//System.out.println(nome);
+					System.out.print("Nome: ");
+					nome_razaoSocial = teclado.next();
 					
-					cliente = new Cliente(nome, cpf);
+					bloqueado = (byte) 0;
+					
+					cliente = new Cliente(pessoa, cpf_cnpj, nome_razaoSocial, bloqueado);
 					fachada.cadastrarCliente(cliente);
 					System.out.println("Cliente cadastrado com sucesso!");
+					System.out.println("ID Cliente no BD: "+cliente.getId());
 				}
+				
 				// Procurar Cliente
 				else if (escolha == 2) {
 					System.out.print("Entre com o CPF: ");
-					cpf = teclado.next();
-					cliente = fachada.procurarCliente(cpf);
-					System.out.println(cliente);
+					//cpf = teclado.next();
+					//cliente = fachada.procurarCliente(cpf);
+				//	System.out.println(cliente);
 				}
 				// Remover cliente
 				else if (escolha == 3) {
 					System.out.print("Entre com o CPF: ");
-					cpf = teclado.next();
-					System.out.println("Tem certeza que deseja remover o cliente "+fachada.procurarCliente(cpf).getNome()+"? (S ou N)");
+					//cpf = teclado.next();
+					//System.out.println("Tem certeza que deseja remover o cliente "+fachada.procurarCliente(cpf).getNome()+"? (S ou N)");
 					certeza = teclado.next().toLowerCase();
 					if(certeza.equals("s")){
-					fachada.removerCliente(cpf);
+					//fachada.removerCliente(cpf);
 					System.out.println("Cliente removido com sucesso!");
 					}else{
-						System.out.println("O cliente "+fachada.procurarCliente(cpf).getNome()+" não foi removido.");
-						TelaCliente.main(null);
+						//System.out.println("O cliente "+fachada.procurarCliente(cpf).getNome()+" não foi removido.");
+						//TelaCliente.main(null);
 					}
 				}
 				// Atualizar Cliente
 				else if (escolha == 4) {
 					System.out.print("Entre com o CPF: ");
-					cpf = teclado.next();
-					cliente = fachada.procurarCliente(cpf);
+					//cpf = teclado.next();
+					//cliente = fachada.procurarCliente(cpf);
 					System.out.print("Entre com o novo Nome: ");
-					nome = teclado.next();
-					cliente.setNome(nome);
-					fachada.atualizarCliente(cliente);
+					//nome = teclado.next();
+					//cliente.setNome(nome);
+					//fachada.atualizarCliente(cliente);
 					System.out.println("Cliente atualizado com sucesso!");
 				}
 				else if (escolha == 5) {
@@ -86,16 +92,17 @@ public class TelaCliente {
 				System.out.println(e.getMessage());
 			} catch (CampoObrigatorioInvalidoException e) {
 				System.out.println(e.getMessage());
-			} catch (ClienteNaoEncontradoException e) {
-				System.out.println(e.getMessage());
 			} catch (InputMismatchException e) {
 				System.out.println("Parâmetro de seleção é nulo ou inválido.");
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 			
+				 
 		}
+			
 		System.out.println("Saiu dos clientes");
 	}
 
 	}
+

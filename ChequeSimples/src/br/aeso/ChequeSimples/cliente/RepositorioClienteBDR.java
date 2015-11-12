@@ -29,7 +29,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 		if (!this.existe(cliente.getCpf_cnpj()))
 			throw new ClienteJaCadastradoException();
 		// Criando a String SQL
-		String sql = "insert into cliente (pessoa, cpf_cnpj, nome_razaoSocial, bloqueado) values (?, ?, ?, ?)";
+		String sql = "insert into clientes (pessoa, cpf_cnpj, nome_razaoSocial, bloqueado) values (?, ?, ?, ?)";
 
 		// Criar o PreparedStatement, objeto para executar a query
 		PreparedStatement preStatement = null;
@@ -124,7 +124,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 				ResultSet resultSet = preStatement.executeQuery();
 
 				while (resultSet.next()) {
-					Cliente cliente = new Cliente();
+					Cliente cliente = new Cliente(null, null, null, (byte) 0);
 					cliente.setId(resultSet.getInt(1));
 					cliente.setPessoa(resultSet.getString(2));
 					cliente.setCpf_cnpj(resultSet.getString(3));
@@ -149,7 +149,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 
 	@Override
 	public Cliente procurar(String cpf_cnpj) throws ClienteNaoEncontradoException {
-		Cliente cliente = new Cliente();
+		Cliente cliente = new Cliente(null, null, null, (byte) 0);
 		int i = getIndice(cpf_cnpj);
 		if (i == -1) {
 			throw new ClienteNaoEncontradoException();
@@ -184,7 +184,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 	@Override
 	public boolean existe(String cpf_cnpj) {
 		boolean resposta;
-		if (getIndice(cpf_cnpj) >= 0)
+		if (getIndice(cpf_cnpj) < 0)
 			resposta = true;
 		else
 			resposta = false;

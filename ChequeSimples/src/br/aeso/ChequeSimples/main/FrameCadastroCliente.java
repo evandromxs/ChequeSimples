@@ -125,7 +125,7 @@ public class FrameCadastroCliente extends JFrame {
 		ButtonGroup bgTCadCli_Pessoa = new ButtonGroup();  
 		
 		JRadioButton rdbtnTCadCli_PFisica = new JRadioButton("Física");
-		//rdbtnTCadCli_PFisica.setSelected(true);
+		rdbtnTCadCli_PFisica.setSelected(true);
 		
 		JRadioButton rdbtnTCadCli_PJuridica = new JRadioButton("Jurídica");
 		
@@ -140,11 +140,12 @@ public class FrameCadastroCliente extends JFrame {
 		JButton btnTCadCli_Salvar = new JButton("Salvar");
 		btnTCadCli_Salvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Cliente novoCliente = new Cliente();
+				Cliente novoCliente = new Cliente(null, null, null, (byte) 0);
 				Endereco novoEndereco = new Endereco();
 				
-				novoCliente.setNome_razaoSocial(textFieldTCadCli_NomeRazao.getText());
+				novoCliente.setPessoa("pj");
 				novoCliente.setCpf_cnpj(textFieldTCadCli_CpfCnpj.getText());
+				novoCliente.setNome_razaoSocial(textFieldTCadCli_NomeRazao.getText());
 				
 				novoEndereco.setLogradouro(textFieldTCadCli_Logradouro.getText());
 				novoEndereco.setNumero(Integer.parseInt(textFieldTCadCli_NumeroEndereco.getText()));
@@ -160,8 +161,8 @@ public class FrameCadastroCliente extends JFrame {
 					fachada.cadastrarCliente(novoCliente);
 					
 				//Pegando o id que está no BD do novo Cliente e setando para o Endereço
-					novoEndereco.setIdCliente(novoCliente.getId());
-					fachada.cadastrarEndereco(novoEndereco);
+					//novoEndereco.setIdCliente(novoCliente.getId());
+					//fachada.cadastrarEndereco(novoEndereco);
 				} catch (IllegalArgumentException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (ClienteJaCadastradoException e) {
@@ -170,9 +171,9 @@ public class FrameCadastroCliente extends JFrame {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (CPFInvalidoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
-				} catch (EnderecoJaCadastradoException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
+				} //catch (EnderecoJaCadastradoException e) {
+					//JOptionPane.showMessageDialog(null, e.getMessage());
+				//}
 				
 			}
 		});
