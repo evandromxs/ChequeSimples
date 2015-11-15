@@ -34,6 +34,7 @@ public class FrameCadastroCheque extends JFrame {
 	 * @throws ParseException 
 	 */
 	public FrameCadastroCheque() throws ParseException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroCheque.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setResizable(false);
 		setTitle("Cadastrar Cheque");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,32 +66,32 @@ public class FrameCadastroCheque extends JFrame {
 		txtTCadCheque_CodBanco = new JTextField("Cód. Banco");
 		txtTCadCheque_CodBanco.setForeground(Color.GRAY);
 		txtTCadCheque_CodBanco.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(txtTCadCheque_CodBanco);
+		TextoVolatil.metodoSetTextoVolatil(txtTCadCheque_CodBanco);
 		
 		txtTCadCheque_NomeBanco = new JTextField("Nome do banco");
 		txtTCadCheque_NomeBanco.setForeground(Color.GRAY);
 		txtTCadCheque_NomeBanco.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(txtTCadCheque_NomeBanco);
+		TextoVolatil.metodoSetTextoVolatil(txtTCadCheque_NomeBanco);
 		
 		txtTCadCheque_CodCliente = new JTextField("Cód. Cliente");
 		txtTCadCheque_CodCliente.setForeground(Color.GRAY);
 		txtTCadCheque_CodCliente.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(txtTCadCheque_CodCliente);
+		TextoVolatil.metodoSetTextoVolatil(txtTCadCheque_CodCliente);
 		
 		txtTCadCheque_NomeCliente = new JTextField("Nome do cliente");
 		txtTCadCheque_NomeCliente.setForeground(Color.GRAY);
 		txtTCadCheque_NomeCliente.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(txtTCadCheque_NomeCliente);
+		TextoVolatil.metodoSetTextoVolatil(txtTCadCheque_NomeCliente);
 		
 		txtTCadCheque_NumeroCheque = new JTextField("Número do cheque");
 		txtTCadCheque_NumeroCheque.setForeground(Color.GRAY);
 		txtTCadCheque_NumeroCheque.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(txtTCadCheque_NumeroCheque);
+		TextoVolatil.metodoSetTextoVolatil(txtTCadCheque_NumeroCheque);
 		
 		txtTCadCheque_Valor = new JTextField("Valor do cheque");
 		txtTCadCheque_Valor.setForeground(Color.GRAY);
 		txtTCadCheque_Valor.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(txtTCadCheque_Valor);
+		TextoVolatil.metodoSetTextoVolatil(txtTCadCheque_Valor);
 		
 		txtTCadCheque_DataEmissao = new JFormattedTextField(mascaraData);
 		txtTCadCheque_DataEmissao.setColumns(10);
@@ -124,8 +125,16 @@ public class FrameCadastroCheque extends JFrame {
 		});
 		
 		JButton btnTCadCheque_Cancelar = new JButton("Cancelar");
+		btnTCadCheque_Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameTPrincipal framePrincipal = new FrameTPrincipal();
+				framePrincipal.setVisible(true);
+				setVisible(false);
+			}
+		});
 		
 		GroupLayout gl_contentPaneTCadCheque = new GroupLayout(contentPaneTCadCheque);
+		
 		gl_contentPaneTCadCheque.setHorizontalGroup(
 			gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
@@ -177,6 +186,7 @@ public class FrameCadastroCheque extends JFrame {
 						.addComponent(lblTCadCheque_Cliente))
 					.addGap(25))
 		);
+		
 		gl_contentPaneTCadCheque.setVerticalGroup(
 			gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
@@ -219,23 +229,8 @@ public class FrameCadastroCheque extends JFrame {
 						.addComponent(btnTCadCheque_Cancelar))
 					.addContainerGap(52, Short.MAX_VALUE))
 		);
+		
 		contentPaneTCadCheque.setLayout(gl_contentPaneTCadCheque);
 	}
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameCadastroCheque frame = new FrameCadastroCheque();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 }

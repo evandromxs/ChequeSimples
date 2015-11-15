@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 
 public class FrameCadastroBanco extends JFrame {
@@ -29,6 +30,8 @@ public class FrameCadastroBanco extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameCadastroBanco() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroBanco.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
+		setResizable(false);
 		setTitle("Cadastrar Banco");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
@@ -37,19 +40,19 @@ public class FrameCadastroBanco extends JFrame {
 		contentPaneTCadBanco.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTCadBanco);
 		
-		JLabel lblTCadBanco_Codigo = new JLabel("C\u00F3digo:");
+		JLabel lblTCadBanco_Codigo = new JLabel("Código:");
 		
 		JLabel lblTCadBanco_Nome = new JLabel("Nome:");
 		
 		textFieldTCadBanco_Codigo = new JTextField("Digite o código");
 		textFieldTCadBanco_Codigo.setForeground(Color.GRAY);
 		textFieldTCadBanco_Codigo.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(textFieldTCadBanco_Codigo);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadBanco_Codigo);
 		
 		textFieldTCadBanco_Nome = new JTextField("Digite o nome do banco");
 		textFieldTCadBanco_Nome.setForeground(Color.GRAY);
 		textFieldTCadBanco_Nome.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(textFieldTCadBanco_Nome);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadBanco_Nome);
 		
 		JButton btnTCadBanco_Salvar = new JButton("Salvar");
 		
@@ -62,6 +65,14 @@ public class FrameCadastroBanco extends JFrame {
 		});
 		
 		btnTCadBanco_Cancelar = new JButton("Cancelar");
+		btnTCadBanco_Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
+				frameTPrincipal.setVisible(true);
+				setVisible(false);
+			}
+		});
+		
 		GroupLayout gl_contentPaneTCadBanco = new GroupLayout(contentPaneTCadBanco);
 		gl_contentPaneTCadBanco.setHorizontalGroup(
 			gl_contentPaneTCadBanco.createParallelGroup(Alignment.LEADING)
@@ -82,6 +93,7 @@ public class FrameCadastroBanco extends JFrame {
 						.addComponent(textFieldTCadBanco_Codigo, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
+		
 		gl_contentPaneTCadBanco.setVerticalGroup(
 			gl_contentPaneTCadBanco.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadBanco.createSequentialGroup()
@@ -102,22 +114,5 @@ public class FrameCadastroBanco extends JFrame {
 		);
 		contentPaneTCadBanco.setLayout(gl_contentPaneTCadBanco);
 	}
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameCadastroBanco frame = new FrameCadastroBanco();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	
 }

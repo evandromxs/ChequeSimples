@@ -1,8 +1,6 @@
 package br.aeso.ChequeSimples.main;
 
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -12,7 +10,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.aeso.ChequeSimples.cliente.Cliente;
-import br.aeso.ChequeSimples.cliente.ControladorCliente;
 import br.aeso.ChequeSimples.endereco.Endereco;
 import br.aeso.ChequeSimples.enums.EstadosBrasileirosEnum;
 import br.aeso.ChequeSimples.excecoes.CPFInvalidoException;
@@ -32,52 +29,34 @@ public class FrameCadastroCliente extends JFrame {
 	private JTextField textFieldTCadCli_Bairro;
 	private JTextField textFieldTCadCli_Cidade;
 	private JTextField textFieldTCadCli_Cep;
+	private JTextField textFieldTCadCli_Telefone;
 
-	public static void metodoSetTextoVolatil(JTextField campoTexto){
-		campoTexto.addFocusListener(new FocusListener(){
-			byte apaguei;
-			@Override
-			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
-			}
-			
-			@Override
-			public void focusGained(FocusEvent e) {
-				// TODO Auto-generated method stub
-				if(apaguei == 0){
-					campoTexto.setText("");
-					campoTexto.setForeground(Color.BLACK);
-				}
-				apaguei = 1;
-			}
-		});
-	}
-	
 	/**
 	 * Create the frame.
 	 */
-	
 	public FrameCadastroCliente() {
 		super(tituloDaJanelaCadastroCliente);
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroCliente.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
-		setSize(600, 350);
+		setSize(603, 412);
 		contentPaneTCadCli = new JPanel();
 		contentPaneTCadCli.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTCadCli);
 		
-		JLabel lblTCadCli_NomeRazao = new JLabel("Nome / Raz\u00E3o Social:");
+		JLabel lblTCadCli_NomeRazao = new JLabel("Nome / Razão Social:");
 		
 		JLabel lblTCadCli_CpfCnpj = new JLabel("CPF / CNPJ:");
 		
 		JLabel lblTCadCli_Pessoa = new JLabel("Pessoa:");
 		
-		JLabel lblTCadCli_Endereco = new JLabel("Endere\u00E7o");
+		JLabel lblTCadCli_Endereco = new JLabel("Endereço");
 		lblTCadCli_Endereco.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblTCadCli_Logradouro = new JLabel("Logradouro:");
 		
-		JLabel lblTCadCli_Numero = new JLabel("N\u00FAmero:");
+		JLabel lblTCadCli_Numero = new JLabel("Número:");
 		
 		JLabel lblTCadCli_Bairro = new JLabel("Bairro:");
 		
@@ -87,54 +66,56 @@ public class FrameCadastroCliente extends JFrame {
 		
 		JLabel lblTCadCli_Cep = new JLabel("CEP:");
 		
+		JLabel lblTelefone = new JLabel("Telefone:");
+
 		textFieldTCadCli_NomeRazao = new JTextField("Digite o nome ou razão social");
 		textFieldTCadCli_NomeRazao.setForeground(Color.GRAY);
 		textFieldTCadCli_NomeRazao.setColumns(10);
-		metodoSetTextoVolatil(textFieldTCadCli_NomeRazao);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_NomeRazao);
 		
 		textFieldTCadCli_CpfCnpj = new JTextField("Digite o CPF ou CNPJ");
 		textFieldTCadCli_CpfCnpj.setForeground(Color.GRAY);
 		textFieldTCadCli_CpfCnpj.setColumns(10);
-		metodoSetTextoVolatil(textFieldTCadCli_CpfCnpj);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_CpfCnpj);
 		
 		textFieldTCadCli_Logradouro = new JTextField("Digite o logradouro");
 		textFieldTCadCli_Logradouro.setForeground(Color.GRAY);
 		textFieldTCadCli_Logradouro.setColumns(10);
-		metodoSetTextoVolatil(textFieldTCadCli_Logradouro);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_Logradouro);
 		
 		textFieldTCadCli_NumeroEndereco = new JTextField("Digite o número");
 		textFieldTCadCli_NumeroEndereco.setForeground(Color.GRAY);
 		textFieldTCadCli_NumeroEndereco.setColumns(10);
-		metodoSetTextoVolatil(textFieldTCadCli_NumeroEndereco);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_NumeroEndereco);
 		
 		textFieldTCadCli_Bairro = new JTextField("Digite o bairro");
 		textFieldTCadCli_Bairro.setForeground(Color.GRAY);
 		textFieldTCadCli_Bairro.setColumns(10);
-		metodoSetTextoVolatil(textFieldTCadCli_Bairro);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_Bairro);
 		
 		textFieldTCadCli_Cidade = new JTextField("Digite a cidade");
 		textFieldTCadCli_Cidade.setForeground(Color.GRAY);
 		textFieldTCadCli_Cidade.setColumns(10);
-		metodoSetTextoVolatil(textFieldTCadCli_Cidade);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_Cidade);
 		
 		textFieldTCadCli_Cep = new JTextField("Digite o CEP");
 		textFieldTCadCli_Cep.setForeground(Color.GRAY);
 		textFieldTCadCli_Cep.setColumns(10);
-		metodoSetTextoVolatil(textFieldTCadCli_Cep);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_Cep);
+
+		textFieldTCadCli_Telefone = new JTextField("Digite o telefone");
+		textFieldTCadCli_Telefone.setForeground(Color.GRAY);
+		textFieldTCadCli_Telefone.setColumns(10);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_Telefone);
 		
 		ButtonGroup bgTCadCli_Pessoa = new ButtonGroup();  
-		
 		JRadioButton rdbtnTCadCli_PFisica = new JRadioButton("Física");
-		//rdbtnTCadCli_PFisica.setSelected(true);
-		
 		JRadioButton rdbtnTCadCli_PJuridica = new JRadioButton("Jurídica");
-		
 		bgTCadCli_Pessoa.add(rdbtnTCadCli_PFisica);
 		bgTCadCli_Pessoa.add(rdbtnTCadCli_PJuridica);
 		
 		JComboBox comboBoxTCadCli_Estado = new JComboBox();
 		comboBoxTCadCli_Estado.setModel(new DefaultComboBoxModel(EstadosBrasileirosEnum.values()));
-		comboBoxTCadCli_Estado.setToolTipText("");
 		comboBoxTCadCli_Estado.setSelectedIndex(15);
 		
 		JButton btnTCadCli_Salvar = new JButton("Salvar");
@@ -158,10 +139,10 @@ public class FrameCadastroCliente extends JFrame {
 				
 				try {
 					fachada.cadastrarCliente(novoCliente);
-					
-				//Pegando o id que está no BD do novo Cliente e setando para o Endereço
+					//Obtendo o ID que está no BD do novo Cliente e setando para o Endereço
 					novoEndereco.setIdCliente(novoCliente.getId());
 					fachada.cadastrarEndereco(novoEndereco);
+					
 				} catch (IllegalArgumentException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (ClienteJaCadastradoException e) {
@@ -173,15 +154,6 @@ public class FrameCadastroCliente extends JFrame {
 				} catch (EnderecoJaCadastradoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
-				
-			}
-		});
-		
-		JButton btnTCadCli_Cancelar = new JButton("Cancelar");
-		btnTCadCli_Cancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//setVisible(false);
-				System.exit(0);
 			}
 		});
 		
@@ -197,11 +169,24 @@ public class FrameCadastroCliente extends JFrame {
 				textFieldTCadCli_Cidade.setText("");
 				comboBoxTCadCli_Estado.setSelectedIndex(15);
 				textFieldTCadCli_Cep.setText("");
+				textFieldTCadCli_Telefone.setText("");
 			}
 		});
 		
+		JButton btnTCadCli_Cancelar = new JButton("Cancelar");
+		btnTCadCli_Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
+					frameTPrincipal.setVisible(true);
+					setVisible(false);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		GroupLayout gl_contentPaneTCadCli = new GroupLayout(contentPaneTCadCli);
-		
 		gl_contentPaneTCadCli.setHorizontalGroup(
 			gl_contentPaneTCadCli.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadCli.createSequentialGroup()
@@ -214,9 +199,11 @@ public class FrameCadastroCliente extends JFrame {
 						.addComponent(lblTCadCli_Bairro)
 						.addComponent(lblTCadCli_Cidade)
 						.addComponent(lblTCadCli_Estado)
-						.addComponent(lblTCadCli_Cep))
+						.addComponent(lblTCadCli_Cep)
+						.addComponent(lblTelefone))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.LEADING)
+						.addComponent(textFieldTCadCli_Telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPaneTCadCli.createSequentialGroup()
 							.addComponent(btnTCadCli_Salvar)
 							.addGap(18)
@@ -285,33 +272,20 @@ public class FrameCadastroCliente extends JFrame {
 						.addComponent(comboBoxTCadCli_Estado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTCadCli_Cep)
-						.addComponent(textFieldTCadCli_Cep, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+						.addComponent(textFieldTCadCli_Cep, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTCadCli_Cep))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTelefone)
+						.addComponent(textFieldTCadCli_Telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnTCadCli_Salvar)
 						.addComponent(btnTCadCli_Limpar)
 						.addComponent(btnTCadCli_Cancelar))
-					.addContainerGap(63, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		contentPaneTCadCli.setLayout(gl_contentPaneTCadCli);
-		
 	}
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameCadastroCliente frame = new FrameCadastroCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} 
-		});
-	}
-
 }

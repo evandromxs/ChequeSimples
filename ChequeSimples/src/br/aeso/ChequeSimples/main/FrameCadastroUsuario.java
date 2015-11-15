@@ -24,6 +24,8 @@ public class FrameCadastroUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameCadastroUsuario() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroUsuario.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
+		setResizable(false);
 		setTitle("Cadastrar Usu\u00E1rio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
@@ -43,12 +45,12 @@ public class FrameCadastroUsuario extends JFrame {
 		textFieldTCadUsu_Nome = new JTextField("Digite o nome");
 		textFieldTCadUsu_Nome.setForeground(Color.GRAY);
 		textFieldTCadUsu_Nome.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(textFieldTCadUsu_Nome);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadUsu_Nome);
 		
 		textFieldTCadUsu_Cpf = new JTextField("Digite o CPF");
 		textFieldTCadUsu_Cpf.setForeground(Color.GRAY);
 		textFieldTCadUsu_Cpf.setColumns(10);
-		FrameCadastroCliente.metodoSetTextoVolatil(textFieldTCadUsu_Cpf);
+		TextoVolatil.metodoSetTextoVolatil(textFieldTCadUsu_Cpf);
 		
 		ButtonGroup bgTCadUsu_Perfil = new ButtonGroup();  
 		
@@ -81,8 +83,6 @@ public class FrameCadastroUsuario extends JFrame {
 		
 		JButton btnTCadUsu_Salvar = new JButton("Salvar");
 		
-		JButton btnTCadUsu_Cancelar = new JButton("Cancelar");
-		
 		JButton btnTCadUsu_Limpar = new JButton("Limpar");
 		btnTCadUsu_Limpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -94,8 +94,16 @@ public class FrameCadastroUsuario extends JFrame {
 			}
 		});
 		
+		JButton btnTCadUsu_Cancelar = new JButton("Cancelar");
+		btnTCadUsu_Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
+				frameTPrincipal.setVisible(true);
+				setVisible(false);
+			}
+		});
+
 		GroupLayout gl_contentPaneTCadUsu = new GroupLayout(contentPaneTCadUsu);
-		
 		gl_contentPaneTCadUsu.setHorizontalGroup(
 			gl_contentPaneTCadUsu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadUsu.createSequentialGroup()
@@ -156,20 +164,4 @@ public class FrameCadastroUsuario extends JFrame {
 		contentPaneTCadUsu.setLayout(gl_contentPaneTCadUsu);
 	}
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameCadastroUsuario frame = new FrameCadastroUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 }
