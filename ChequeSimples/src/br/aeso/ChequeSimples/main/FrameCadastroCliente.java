@@ -126,9 +126,11 @@ public class FrameCadastroCliente extends JFrame {
 		JButton btnTCadCli_Salvar = new JButton("Salvar");
 		btnTCadCli_Salvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Cliente novoCliente = new Cliente();
+				Cliente novoCliente = new Cliente(null, null, null, (byte) 0);
 				Endereco novoEndereco = new Endereco();
 				
+				novoCliente.setPessoa("pj");
+				novoCliente.setCpf_cnpj(textFieldTCadCli_CpfCnpj.getText());
 				novoCliente.setNome_razaoSocial(textFieldTCadCli_NomeRazao.getText());
 				novoCliente.setCpf_cnpj(textFieldTCadCli_CpfCnpj.getText());
 				
@@ -145,8 +147,8 @@ public class FrameCadastroCliente extends JFrame {
 				try {
 					fachada.cadastrarCliente(novoCliente);
 					//Obtendo o ID que está no BD do novo Cliente e setando para o Endereço
-					novoEndereco.setIdCliente(novoCliente.getId());
-					fachada.cadastrarEndereco(novoEndereco);
+					//novoEndereco.setIdCliente(novoCliente.getId());
+					//fachada.cadastrarEndereco(novoEndereco);
 					
 				} catch (IllegalArgumentException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
@@ -156,9 +158,9 @@ public class FrameCadastroCliente extends JFrame {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (CPFInvalidoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
-				} catch (EnderecoJaCadastradoException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
+				} //catch (EnderecoJaCadastradoException e) {
+					//JOptionPane.showMessageDialog(null, e.getMessage());
+				//}
 			}
 		});
 		

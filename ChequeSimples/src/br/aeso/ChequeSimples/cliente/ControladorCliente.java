@@ -11,7 +11,7 @@ public class ControladorCliente {
 	private IRepositorioCliente repositorioCliente;
 	
 	public ControladorCliente() {
-		this.repositorioCliente = new RepositorioClienteArrayList();
+		this.repositorioCliente = new RepositorioClienteBDR();
 	}
 	
 	public void cadastrar(Cliente cliente) throws IllegalArgumentException, ClienteJaCadastradoException, CampoObrigatorioInvalidoException {

@@ -14,14 +14,14 @@ public class Cliente {
     private byte bloqueado;
     private int id_endereco;
     private Endereco endereco;
-    private String dataCadastro = getDataHoje();
+    //private String dataCadastro = getDataHoje();
     
-    public Cliente(String nomeRazaoSocial, String cpf_cnpj) {
-        this.setNome_razaoSocial(nomeRazaoSocial);
-        this.setCpf_cnpj(cpf_cnpj);
+    public Cliente(String pessoa, String cpf_cnpj, String nomeRazaoSocial, byte bloqueado) {
+    	this.setPessoa(pessoa);
+    	this.setCpf_cnpj(cpf_cnpj);
+    	this.setNome_razaoSocial(nomeRazaoSocial);
+    	this.setBloqueado(bloqueado);
     }
-    
-    public Cliente(){}
     
     public Integer getId() {
         return id;
@@ -31,13 +31,6 @@ public class Cliente {
         this.id = id;
     }
         
-    public String getDataCadastro() {
-		return dataCadastro = getDataHoje();
-	}
-
-	public void setDataCadastro(String dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
 	
 //	public Endereco getEndereco() {
 //		if(endereco == null){
