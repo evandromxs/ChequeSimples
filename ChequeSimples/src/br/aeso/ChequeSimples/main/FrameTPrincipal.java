@@ -1,8 +1,5 @@
 package br.aeso.ChequeSimples.main;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +8,6 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -127,7 +123,6 @@ public class FrameTPrincipal extends JFrame {
 				confirmarSaida();
 			}  
 		});
-		
 		
 		GroupLayout gl_contentPaneTPrinc = new GroupLayout(contentPaneTPrinc);
 		

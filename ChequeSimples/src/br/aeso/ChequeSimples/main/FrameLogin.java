@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class FrameLogin extends JFrame{
@@ -89,6 +88,7 @@ public class FrameLogin extends JFrame{
 						.addComponent(txtTLogin_Usuario))
 					.addContainerGap(41, Short.MAX_VALUE))
 		);
+		
 		gl_contentPaneTLogin.setVerticalGroup(
 			gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTLogin.createSequentialGroup()
@@ -113,7 +113,7 @@ public class FrameLogin extends JFrame{
 	public void confirmarSaida(){
 		int i = JOptionPane.showConfirmDialog(null ,"Tem certeza que deseja encerrar o programa?", "Sair",JOptionPane.YES_NO_OPTION);  
 		if (i == JOptionPane.YES_OPTION) {  
-			System.exit(0);  
+			System.exit(0);
 		} else {
 			repaint();
 		} 

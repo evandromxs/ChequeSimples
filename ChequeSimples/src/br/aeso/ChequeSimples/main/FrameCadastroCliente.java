@@ -45,7 +45,7 @@ public class FrameCadastroCliente extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroCliente.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
-		setSize(603, 412);
+		setSize(600, 420);
 		contentPaneTCadCli = new JPanel();
 		contentPaneTCadCli.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTCadCli);
@@ -216,15 +216,15 @@ public class FrameCadastroCliente extends JFrame {
 							.addComponent(btnTCadCli_Cancelar))
 						.addComponent(textFieldTCadCli_Telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTCadCli_Endereco)
-						.addComponent(textFieldTCadCli_Cidade, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-						.addComponent(textFieldTCadCli_Bairro, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_Cidade, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_Bairro, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
 						.addComponent(textFieldTCadCli_NumeroEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldTCadCli_Logradouro, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_Logradouro, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
 						.addGroup(gl_contentPaneTCadCli.createSequentialGroup()
 							.addComponent(rdbtnTCadCli_PFisica)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(rdbtnTCadCli_PJuridica))
-						.addComponent(textFieldTCadCli_NomeRazao, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_NomeRazao, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
 						.addComponent(textFieldTCadCli_CpfCnpj, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.TRAILING, false)
 							.addComponent(textFieldTCadCli_Cep, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
@@ -283,12 +283,12 @@ public class FrameCadastroCliente extends JFrame {
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTelefone)
 						.addComponent(textFieldTCadCli_Telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+					.addGap(29)
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnTCadCli_Salvar)
 						.addComponent(btnTCadCli_Limpar)
 						.addComponent(btnTCadCli_Cancelar))
-					.addGap(40))
+					.addContainerGap())
 		);
 		contentPaneTCadCli.setLayout(gl_contentPaneTCadCli);
 	}

@@ -1,9 +1,6 @@
 package br.aeso.ChequeSimples.main;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,7 +13,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-
 
 public class FrameCadastroBanco extends JFrame {
 
@@ -35,7 +31,7 @@ public class FrameCadastroBanco extends JFrame {
 		setTitle("Cadastrar Banco");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
-		setSize(600, 155);
+		setSize(600, 180);
 		contentPaneTCadBanco = new JPanel();
 		contentPaneTCadBanco.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTCadBanco);
@@ -89,11 +85,10 @@ public class FrameCadastroBanco extends JFrame {
 							.addComponent(btnTCadBanco_Limpar)
 							.addGap(18)
 							.addComponent(btnTCadBanco_Cancelar))
-						.addComponent(textFieldTCadBanco_Nome, GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+						.addComponent(textFieldTCadBanco_Nome, GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
 						.addComponent(textFieldTCadBanco_Codigo, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
-		
 		gl_contentPaneTCadBanco.setVerticalGroup(
 			gl_contentPaneTCadBanco.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadBanco.createSequentialGroup()
@@ -105,12 +100,12 @@ public class FrameCadastroBanco extends JFrame {
 					.addGroup(gl_contentPaneTCadBanco.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textFieldTCadBanco_Nome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTCadBanco_Nome))
-					.addGap(18)
+					.addGap(30)
 					.addGroup(gl_contentPaneTCadBanco.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnTCadBanco_Salvar)
+						.addComponent(btnTCadBanco_Cancelar)
 						.addComponent(btnTCadBanco_Limpar)
-						.addComponent(btnTCadBanco_Cancelar))
-					.addContainerGap(260, Short.MAX_VALUE))
+						.addComponent(btnTCadBanco_Salvar))
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		contentPaneTCadBanco.setLayout(gl_contentPaneTCadBanco);
 	}

@@ -29,7 +29,7 @@ public class FrameCadastroUsuario extends JFrame {
 		setTitle("Cadastrar Usu\u00E1rio");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
-		setSize(600, 224);
+		setSize(600, 250);
 		contentPaneTCadUsu = new JPanel();
 		contentPaneTCadUsu.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTCadUsu);
