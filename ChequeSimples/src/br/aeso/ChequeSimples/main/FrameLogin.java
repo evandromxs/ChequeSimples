@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class FrameLogin extends JFrame{
 
@@ -30,9 +31,9 @@ public class FrameLogin extends JFrame{
 		setTitle("ChequeSimples");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameLogin.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		setSize(360, 200);
+		setSize(340, 410);
 		contentPaneTLogin = new JPanel();
 		contentPaneTLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTLogin);
@@ -51,7 +52,7 @@ public class FrameLogin extends JFrame{
 		JButton btnTLogin_Sair = new JButton("Sair");
 		btnTLogin_Sair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				confirmarSaida();
+				System.exit(0);
 			}
 		});
 		
@@ -68,39 +69,51 @@ public class FrameLogin extends JFrame{
 			}
 		});
 		
+		JLabel lblIconeChequeTela = new JLabel("");
+		lblIconeChequeTela.setIcon(new ImageIcon(FrameLogin.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon_G.png")));
+		
 		GroupLayout gl_contentPaneTLogin = new GroupLayout(contentPaneTLogin);
 		gl_contentPaneTLogin.setHorizontalGroup(
-			gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
+			gl_contentPaneTLogin.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPaneTLogin.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblUsuario)
-						.addComponent(lblSenha))
-					.addGap(18)
 					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPaneTLogin.createSequentialGroup()
-							.addComponent(btnTLogin_Ok)
+							.addContainerGap()
+							.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblSenha)
+								.addComponent(lblUsuario))
 							.addGap(18)
-							.addComponent(btnTLogin_Sair)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(btnTestar))
-						.addComponent(pwdTLogin_Senha, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-						.addComponent(txtTLogin_Usuario))
-					.addContainerGap(41, Short.MAX_VALUE))
+							.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPaneTLogin.createSequentialGroup()
+									.addComponent(btnTLogin_Ok)
+									.addGap(18)
+									.addComponent(btnTLogin_Sair)
+									.addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+									.addComponent(btnTestar))
+								.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING, false)
+									.addGroup(gl_contentPaneTLogin.createSequentialGroup()
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(pwdTLogin_Senha))
+									.addComponent(txtTLogin_Usuario, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_contentPaneTLogin.createSequentialGroup()
+							.addGap(46)
+							.addComponent(lblIconeChequeTela)))
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
-		
 		gl_contentPaneTLogin.setVerticalGroup(
 			gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTLogin.createSequentialGroup()
-					.addContainerGap()
+					.addGap(28)
+					.addComponent(lblIconeChequeTela)
+					.addGap(36)
 					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblUsuario)
-						.addComponent(txtTLogin_Usuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+						.addComponent(txtTLogin_Usuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblUsuario))
+					.addGap(21)
 					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblSenha)
 						.addComponent(pwdTLogin_Senha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(43)
+					.addGap(39)
 					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnTLogin_Ok)
 						.addComponent(btnTLogin_Sair)
@@ -134,6 +147,4 @@ public class FrameLogin extends JFrame{
 			}
 		});
 	}
-	
-	
 }
