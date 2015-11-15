@@ -33,7 +33,7 @@ public class FrameCadastroBanco extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroBanco.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setResizable(false);
 		setTitle("Cadastrar Banco");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
 		setSize(600, 155);
 		contentPaneTCadBanco = new JPanel();
@@ -67,9 +67,9 @@ public class FrameCadastroBanco extends JFrame {
 		btnTCadBanco_Cancelar = new JButton("Cancelar");
 		btnTCadBanco_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
 				frameTPrincipal.setVisible(true);
-				setVisible(false);
 			}
 		});
 		

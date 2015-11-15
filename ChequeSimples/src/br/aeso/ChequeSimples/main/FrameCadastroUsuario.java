@@ -27,7 +27,7 @@ public class FrameCadastroUsuario extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroUsuario.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setResizable(false);
 		setTitle("Cadastrar Usu\u00E1rio");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
 		setSize(600, 224);
 		contentPaneTCadUsu = new JPanel();
@@ -97,9 +97,9 @@ public class FrameCadastroUsuario extends JFrame {
 		JButton btnTCadUsu_Cancelar = new JButton("Cancelar");
 		btnTCadUsu_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
 				frameTPrincipal.setVisible(true);
-				setVisible(false);
 			}
 		});
 

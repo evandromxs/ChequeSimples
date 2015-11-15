@@ -31,8 +31,9 @@ public class FrameTPrincipal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameTPrincipal.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setResizable(false);
 		setTitle("Tela Principal");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 487, 452);
+		
 		contentPaneTPrinc = new JPanel();
 		contentPaneTPrinc.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTPrinc);
@@ -55,9 +56,9 @@ public class FrameTPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				FrameCadastroCheque frameCadCheque;
 				try {
+					dispose();
 					frameCadCheque = new FrameCadastroCheque();
 					frameCadCheque.setVisible(true);
-					setVisible(false);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -70,9 +71,9 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_CadastrarBanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					dispose();
 					FrameCadastroBanco frameCadBanco = new FrameCadastroBanco();
 					frameCadBanco.setVisible(true);
-					setVisible(false);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -84,9 +85,9 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_CadastrarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					dispose();
 					FrameCadastroCliente frameCadCliente = new FrameCadastroCliente();
 					frameCadCliente.setVisible(true);
-					setVisible(false);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -98,9 +99,9 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_CadastrarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					dispose();
 					FrameCadastroUsuario frameCadUsuario = new FrameCadastroUsuario();
 					frameCadUsuario.setVisible(true);
-					setVisible(false);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -123,12 +124,7 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_EncerrarPrograma.setIcon(new ImageIcon(FrameTPrincipal.class.getResource("/br/aeso/ChequeSimples/files/sai_icn.png")));
 		btnTPrinc_EncerrarPrograma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = JOptionPane.showConfirmDialog(null ,"Tem certeza que deseja encerrar o programa?", "Sair",JOptionPane.YES_NO_OPTION);  
-				if (i == JOptionPane.YES_OPTION) {  
-					System.exit(0);  
-				} else {
-					repaint();
-				}  
+				confirmarSaida();
 			}  
 		});
 		
@@ -207,20 +203,13 @@ public class FrameTPrincipal extends JFrame {
 		gl_contentPaneTPrinc.linkSize(SwingConstants.VERTICAL, new Component[] {lblTPrinc_IconeCheque, lblTPrinc_IconeBanco, lblTPrinc_IconeCliente, lblTPrinc_IconeUsuario});
 		contentPaneTPrinc.setLayout(gl_contentPaneTPrinc);
 	}
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
-					frameTPrincipal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+	public void confirmarSaida(){
+		int i = JOptionPane.showConfirmDialog(null ,"Tem certeza que deseja encerrar o programa?", "Sair",JOptionPane.YES_NO_OPTION);  
+		if (i == JOptionPane.YES_OPTION) {  
+			System.exit(0);  
+		} else {
+			repaint();
+		} 
 	}
 }

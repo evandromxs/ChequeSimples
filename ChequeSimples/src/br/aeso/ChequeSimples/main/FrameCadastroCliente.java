@@ -2,10 +2,12 @@ package br.aeso.ChequeSimples.main;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -30,20 +32,25 @@ public class FrameCadastroCliente extends JFrame {
 	private JTextField textFieldTCadCli_Cidade;
 	private JTextField textFieldTCadCli_Cep;
 	private JTextField textFieldTCadCli_Telefone;
+	private MaskFormatter mascaraCep;
+	private MaskFormatter mascaraTelefone;
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public FrameCadastroCliente() {
+	public FrameCadastroCliente() throws ParseException {
 		super(tituloDaJanelaCadastroCliente);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroCliente.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
 		setSize(603, 412);
 		contentPaneTCadCli = new JPanel();
 		contentPaneTCadCli.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTCadCli);
+		mascaraCep = new MaskFormatter("##.###-###");
+		mascaraTelefone = new MaskFormatter("(##)#####-####");
 		
 		JLabel lblTCadCli_NomeRazao = new JLabel("Nome / Razão Social:");
 		
@@ -98,11 +105,9 @@ public class FrameCadastroCliente extends JFrame {
 		textFieldTCadCli_Cidade.setColumns(10);
 		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_Cidade);
 		
-		textFieldTCadCli_Cep = new JTextField("Digite o CEP");
-		textFieldTCadCli_Cep.setForeground(Color.GRAY);
+		textFieldTCadCli_Cep = new JFormattedTextField(mascaraCep);
 		textFieldTCadCli_Cep.setColumns(10);
-		TextoVolatil.metodoSetTextoVolatil(textFieldTCadCli_Cep);
-
+		
 		textFieldTCadCli_Telefone = new JTextField("Digite o telefone");
 		textFieldTCadCli_Telefone.setForeground(Color.GRAY);
 		textFieldTCadCli_Telefone.setColumns(10);
@@ -177,9 +182,9 @@ public class FrameCadastroCliente extends JFrame {
 		btnTCadCli_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					dispose();
 					FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
 					frameTPrincipal.setVisible(true);
-					setVisible(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -203,29 +208,29 @@ public class FrameCadastroCliente extends JFrame {
 						.addComponent(lblTelefone))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.LEADING)
-						.addComponent(textFieldTCadCli_Telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPaneTCadCli.createSequentialGroup()
 							.addComponent(btnTCadCli_Salvar)
 							.addGap(18)
 							.addComponent(btnTCadCli_Limpar)
 							.addGap(18)
 							.addComponent(btnTCadCli_Cancelar))
+						.addComponent(textFieldTCadCli_Telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTCadCli_Endereco)
-						.addComponent(comboBoxTCadCli_Estado, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldTCadCli_Cidade, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-						.addComponent(textFieldTCadCli_Bairro, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_Cidade, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_Bairro, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
 						.addComponent(textFieldTCadCli_NumeroEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldTCadCli_Logradouro, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_Logradouro, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
 						.addGroup(gl_contentPaneTCadCli.createSequentialGroup()
 							.addComponent(rdbtnTCadCli_PFisica)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(rdbtnTCadCli_PJuridica))
-						.addComponent(textFieldTCadCli_NomeRazao, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-						.addComponent(textFieldTCadCli_Cep, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldTCadCli_CpfCnpj, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldTCadCli_NomeRazao, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+						.addComponent(textFieldTCadCli_CpfCnpj, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(textFieldTCadCli_Cep, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+							.addComponent(comboBoxTCadCli_Estado, Alignment.LEADING, 0, 83, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
-		
 		gl_contentPaneTCadCli.setVerticalGroup(
 			gl_contentPaneTCadCli.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadCli.createSequentialGroup()
@@ -278,12 +283,12 @@ public class FrameCadastroCliente extends JFrame {
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTelefone)
 						.addComponent(textFieldTCadCli_Telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
 					.addGroup(gl_contentPaneTCadCli.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnTCadCli_Salvar)
 						.addComponent(btnTCadCli_Limpar)
 						.addComponent(btnTCadCli_Cancelar))
-					.addContainerGap())
+					.addGap(40))
 		);
 		contentPaneTCadCli.setLayout(gl_contentPaneTCadCli);
 	}

@@ -37,9 +37,9 @@ public class FrameCadastroCheque extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroCheque.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setResizable(false);
 		setTitle("Cadastrar Cheque");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
-		setSize(780, 360);
+		setSize(780, 300);
 		contentPaneTCadCheque = new JPanel();
 		contentPaneTCadCheque.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTCadCheque);
@@ -49,15 +49,15 @@ public class FrameCadastroCheque extends JFrame {
 		
 		JLabel lblTCadCheque_Cliente = new JLabel("Cliente:");
 		
-		JLabel lblTCadCheque_Numero = new JLabel("N\u00FAmero:");
+		JLabel lblTCadCheque_Numero = new JLabel("Número:");
 		
 		JLabel lblTCadCheque_Valor = new JLabel("Valor:");
 		
-		JLabel lblTCadCheque_DataDeEmissao = new JLabel("Data de Emiss\u00E3o:");
+		JLabel lblTCadCheque_DataDeEmissao = new JLabel("Data de Emissão:");
 		
 		JLabel lblTCadCheque_Status = new JLabel("Status:");
 		
-		JLabel lblTCadCheque_DataDeDeposito = new JLabel("Data de Dep\u00F3sito:");
+		JLabel lblTCadCheque_DataDeDeposito = new JLabel("Data de Depósito:");
 		
 		JCheckBox chckbxTCadCheque_Cruzado = new JCheckBox("Cruzado");
 		
@@ -127,14 +127,13 @@ public class FrameCadastroCheque extends JFrame {
 		JButton btnTCadCheque_Cancelar = new JButton("Cancelar");
 		btnTCadCheque_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				FrameTPrincipal framePrincipal = new FrameTPrincipal();
 				framePrincipal.setVisible(true);
-				setVisible(false);
 			}
 		});
 		
 		GroupLayout gl_contentPaneTCadCheque = new GroupLayout(contentPaneTCadCheque);
-		
 		gl_contentPaneTCadCheque.setHorizontalGroup(
 			gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
@@ -154,31 +153,36 @@ public class FrameCadastroCheque extends JFrame {
 											.addComponent(txtTCadCheque_NumeroCheque, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
 											.addGap(68)
 											.addComponent(lblTCadCheque_Valor))
+										.addComponent(txtTCadCheque_DataEmissao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
+											.addComponent(btnTCadCheque_Salvar)
+											.addGap(18)
+											.addComponent(btnTCadCheque_Limpar)
+											.addGap(18)
+											.addComponent(btnTCadCheque_Cancelar))
+										.addGroup(Alignment.TRAILING, gl_contentPaneTCadCheque.createSequentialGroup()
 											.addComponent(comboBoxTCadCheque_Status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(lblTCadCheque_DataDeDeposito))
-										.addComponent(txtTCadCheque_DataEmissao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtTCadCheque_DataDeposito, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(chckbxTCadCheque_Nominal)
-										.addComponent(chckbxTCadCheque_Cruzado)
-										.addComponent(txtTCadCheque_Valor, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)))
+											.addComponent(lblTCadCheque_DataDeDeposito)))
+									.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
+											.addGap(18)
+											.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
+												.addComponent(txtTCadCheque_DataDeposito, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(txtTCadCheque_Valor, GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+											.addGap(31)
+											.addComponent(chckbxTCadCheque_Cruzado))
+										.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(chckbxTCadCheque_Nominal))))
 								.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
 									.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(txtTCadCheque_CodCliente, 0, 0, Short.MAX_VALUE)
 										.addComponent(txtTCadCheque_CodBanco, GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtTCadCheque_NomeCliente, GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-										.addComponent(txtTCadCheque_NomeBanco, GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)))
-								.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
-									.addComponent(btnTCadCheque_Salvar)
-									.addGap(18)
-									.addComponent(btnTCadCheque_Limpar)
-									.addGap(18)
-									.addComponent(btnTCadCheque_Cancelar)))
+										.addComponent(txtTCadCheque_NomeCliente, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+										.addComponent(txtTCadCheque_NomeBanco, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnTCadCheque_ProcurarCliente)
@@ -186,7 +190,6 @@ public class FrameCadastroCheque extends JFrame {
 						.addComponent(lblTCadCheque_Cliente))
 					.addGap(25))
 		);
-		
 		gl_contentPaneTCadCheque.setVerticalGroup(
 			gl_contentPaneTCadCheque.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTCadCheque.createSequentialGroup()
@@ -211,23 +214,21 @@ public class FrameCadastroCheque extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTCadCheque_DataDeEmissao)
-						.addComponent(txtTCadCheque_DataEmissao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtTCadCheque_DataEmissao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxTCadCheque_Nominal))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTCadCheque_Status)
 						.addComponent(comboBoxTCadCheque_Status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTCadCheque_DataDeDeposito)
-						.addComponent(txtTCadCheque_DataDeposito, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(chckbxTCadCheque_Nominal)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(chckbxTCadCheque_Cruzado)
-					.addGap(18)
+						.addComponent(txtTCadCheque_DataDeposito, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxTCadCheque_Cruzado))
+					.addGap(34)
 					.addGroup(gl_contentPaneTCadCheque.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnTCadCheque_Salvar)
 						.addComponent(btnTCadCheque_Limpar)
 						.addComponent(btnTCadCheque_Cancelar))
-					.addContainerGap(52, Short.MAX_VALUE))
+					.addContainerGap(44, Short.MAX_VALUE))
 		);
 		
 		contentPaneTCadCheque.setLayout(gl_contentPaneTCadCheque);
