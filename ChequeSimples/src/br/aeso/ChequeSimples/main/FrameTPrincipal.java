@@ -61,7 +61,7 @@ public class FrameTPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				FrameCadastroCheque frameCadCheque;
 				try {
-					dispose();
+					//dispose();
 					frameCadCheque = new FrameCadastroCheque();
 					frameCadCheque.setVisible(true);
 				} catch (ParseException e1) {

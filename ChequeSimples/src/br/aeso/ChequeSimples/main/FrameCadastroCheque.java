@@ -228,7 +228,6 @@ public class FrameCadastroCheque extends JFrame {
 						.addComponent(btnTCadCheque_Cancelar))
 					.addContainerGap(44, Short.MAX_VALUE))
 		);
-		
 		contentPaneTCadCheque.setLayout(gl_contentPaneTCadCheque);
 	}
 	
