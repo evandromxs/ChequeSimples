@@ -184,9 +184,8 @@ public class FrameCadastroCliente extends JFrame {
 		btnTCadCli_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					dispose();
-					FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
-					frameTPrincipal.setVisible(true);
+					GerenciadorDeTelas.fecharTelaCadastroCliente();
+					GerenciadorDeTelas.abrirTelaPrincipal();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

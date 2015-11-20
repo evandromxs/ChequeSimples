@@ -63,9 +63,8 @@ public class FrameCadastroBanco extends JFrame {
 		btnTCadBanco_Cancelar = new JButton("Cancelar");
 		btnTCadBanco_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
-				frameTPrincipal.setVisible(true);
+				GerenciadorDeTelas.fecharTelaCadastroBanco();
+				GerenciadorDeTelas.abrirTelaPrincipal();
 			}
 		});
 		

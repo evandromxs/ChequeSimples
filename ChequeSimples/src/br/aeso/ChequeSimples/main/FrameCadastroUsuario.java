@@ -26,7 +26,7 @@ public class FrameCadastroUsuario extends JFrame {
 	public FrameCadastroUsuario() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameCadastroUsuario.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setResizable(false);
-		setTitle("Cadastrar Usu\u00E1rio");
+		setTitle("Cadastrar Usuário");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 798, 599);
 		setSize(600, 250);
@@ -40,7 +40,7 @@ public class FrameCadastroUsuario extends JFrame {
 		
 		JLabel lblTCadUsu_Senha = new JLabel("Senha:");
 		
-		JLabel lblTCadUsu_Perfil = new JLabel("Perfil de Usu\u00E1rio:");
+		JLabel lblTCadUsu_Perfil = new JLabel("Perfil de Usuário:");
 		
 		textFieldTCadUsu_Nome = new JTextField("Digite o nome");
 		textFieldTCadUsu_Nome.setForeground(Color.GRAY);
@@ -54,7 +54,7 @@ public class FrameCadastroUsuario extends JFrame {
 		
 		ButtonGroup bgTCadUsu_Perfil = new ButtonGroup();  
 		
-		JRadioButton rdbtnTCadUsu_Funcionario = new JRadioButton("Funcion\u00E1rio");
+		JRadioButton rdbtnTCadUsu_Funcionario = new JRadioButton("Funcionário");
 		JRadioButton rdbtnTCadUsu_Admin = new JRadioButton("Admin");
 		
 		bgTCadUsu_Perfil.add(rdbtnTCadUsu_Funcionario);
@@ -97,12 +97,11 @@ public class FrameCadastroUsuario extends JFrame {
 		JButton btnTCadUsu_Cancelar = new JButton("Cancelar");
 		btnTCadUsu_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
-				frameTPrincipal.setVisible(true);
+				GerenciadorDeTelas.fecharTelaCadastroUsuario();
+				GerenciadorDeTelas.abrirTelaPrincipal();
 			}
 		});
-
+		
 		GroupLayout gl_contentPaneTCadUsu = new GroupLayout(contentPaneTCadUsu);
 		gl_contentPaneTCadUsu.setHorizontalGroup(
 			gl_contentPaneTCadUsu.createParallelGroup(Alignment.LEADING)

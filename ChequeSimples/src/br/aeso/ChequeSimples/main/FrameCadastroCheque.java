@@ -125,9 +125,8 @@ public class FrameCadastroCheque extends JFrame {
 		JButton btnTCadCheque_Cancelar = new JButton("Cancelar");
 		btnTCadCheque_Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				FrameTPrincipal framePrincipal = new FrameTPrincipal();
-				framePrincipal.setVisible(true);
+				GerenciadorDeTelas.fecharTelaCadastroCheque();
+				GerenciadorDeTelas.abrirTelaPrincipal();
 			}
 		});
 		

@@ -60,9 +60,8 @@ public class FrameLogin extends JFrame{
 		btnTestar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					dispose();
-					FrameTPrincipal frameTPrincipal = new FrameTPrincipal();
-					frameTPrincipal.setVisible(true);
+					GerenciadorDeTelas.fecharTelaLogin();
+					GerenciadorDeTelas.abrirTelaPrincipal();
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -132,19 +131,4 @@ public class FrameLogin extends JFrame{
 		} 
 	}
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameLogin frameLogin = new FrameLogin();
-					frameLogin.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 }

@@ -13,14 +13,13 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class FrameTPrincipal extends JFrame {
 
 	private JPanel contentPaneTPrinc;
-	private String funcionarioLogado = "Pesquisar como atribuir o usuário ativo a esta variável.";
+	private String funcionarioLogado;
 	
 	/**
 	 * Create the frame.
@@ -48,10 +47,10 @@ public class FrameTPrincipal extends JFrame {
 		JLabel lblTPrinc_IconeUsuario = new JLabel();
 		lblTPrinc_IconeUsuario.setIcon(new ImageIcon(FrameTPrincipal.class.getResource("/br/aeso/ChequeSimples/files/usr_icn.png")));
 		
+		funcionarioLogado = "Pesquisar como atribuir o nome do usuário ativo a esta variável.";
 		if(funcionarioLogado.length() > 50){
 			funcionarioLogado = funcionarioLogado.substring(0, 47) + new String("...");
 		}
-		
 		JLabel lblTPrinc_UsuarioAtivo = new JLabel("Usuário Ativo: " + funcionarioLogado);
 		lblTPrinc_UsuarioAtivo.setEnabled(false);
 		
@@ -59,12 +58,10 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_CadastrarCheque.setIcon(new ImageIcon(FrameTPrincipal.class.getResource("/br/aeso/ChequeSimples/files/add_icn.png")));
 		btnTPrinc_CadastrarCheque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FrameCadastroCheque frameCadCheque;
 				try {
-					//dispose();
-					frameCadCheque = new FrameCadastroCheque();
-					frameCadCheque.setVisible(true);
-				} catch (ParseException e1) {
+					GerenciadorDeTelas.fecharTelaPrincipal();
+					GerenciadorDeTelas.abrirTelaCadastroCheque();
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -75,9 +72,8 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_CadastrarBanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					dispose();
-					FrameCadastroBanco frameCadBanco = new FrameCadastroBanco();
-					frameCadBanco.setVisible(true);
+					GerenciadorDeTelas.fecharTelaPrincipal();
+					GerenciadorDeTelas.abrirTelaCadastroBanco();
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -89,9 +85,8 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_CadastrarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					dispose();
-					FrameCadastroCliente frameCadCliente = new FrameCadastroCliente();
-					frameCadCliente.setVisible(true);
+					GerenciadorDeTelas.fecharTelaPrincipal();
+					GerenciadorDeTelas.abrirTelaCadastroCliente();
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -103,9 +98,8 @@ public class FrameTPrincipal extends JFrame {
 		btnTPrinc_CadastrarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					dispose();
-					FrameCadastroUsuario frameCadUsuario = new FrameCadastroUsuario();
-					frameCadUsuario.setVisible(true);
+					GerenciadorDeTelas.fecharTelaPrincipal();
+					GerenciadorDeTelas.abrirTelaCadastroUsuario();
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -131,7 +125,6 @@ public class FrameTPrincipal extends JFrame {
 				confirmarSaida();
 			}  
 		});
-		
 		
 		GroupLayout gl_contentPaneTPrinc = new GroupLayout(contentPaneTPrinc);
 		gl_contentPaneTPrinc.setHorizontalGroup(
