@@ -77,6 +77,11 @@ public class GerenciadorDeTelas {
 		frameCadastroCliente.dispose();
 	}
 	
+	public static void fecharTelaCadastroClienteAbrindoTelaPrincipal(){
+		frameCadastroCliente.dispose();
+		abrirTelaPrincipal();
+	}
+	
 	public static void abrirTelaCadastroUsuario(){
 		frameCadastroUsuario = new FrameCadastroUsuario();
 		frameCadastroUsuario.setVisible(true);
@@ -85,5 +90,17 @@ public class GerenciadorDeTelas {
 	public static void fecharTelaCadastroUsuario(){
 		frameCadastroUsuario.dispose();
 	}
-
+	
+	public static String converterParaDataBrasileira(String dataEstrangeira){
+		dataEstrangeira = dataEstrangeira.replaceAll("[^0-9 ]", "");
+		String dataBrasileira = dataEstrangeira.substring(6, 8) + "/" + dataEstrangeira.substring(4, 6) + "/" + dataEstrangeira.substring(0, 4); 
+		return dataBrasileira;
+	}
+	
+	public static String converterParaDataEstrangeira(String dataBrasileira){
+		dataBrasileira = dataBrasileira.replaceAll("[^0-9 ]", "");
+		String dataEstrangeira = dataBrasileira.substring(4, 8) + "-" + dataBrasileira.substring(2, 4) + "-" + dataBrasileira.substring(0, 2);
+		return dataEstrangeira;
+	}
+	
 }
