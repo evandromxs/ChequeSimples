@@ -127,25 +127,27 @@ public class FrameCadastroCliente extends JFrame {
 		btnTCadCli_Salvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Cliente novoCliente = new Cliente(null, null, null, (byte) 0);
-				Endereco novoEndereco = new Endereco();
+				//Endereco novoEndereco = new Endereco();
 				
 				novoCliente.setPessoa("pj");
 				novoCliente.setCpf_cnpj(textFieldTCadCli_CpfCnpj.getText());
 				novoCliente.setNome_razaoSocial(textFieldTCadCli_NomeRazao.getText());
 				novoCliente.setCpf_cnpj(textFieldTCadCli_CpfCnpj.getText());
 				
-				novoEndereco.setLogradouro(textFieldTCadCli_Logradouro.getText());
-				novoEndereco.setNumero(Integer.parseInt(textFieldTCadCli_NumeroEndereco.getText()));
-				novoEndereco.setBairro(textFieldTCadCli_Bairro.getText());
-				novoEndereco.setCidade(textFieldTCadCli_Cidade.getText());
-				novoEndereco.setEstado(comboBoxTCadCli_Estado.getSelectedItem().toString());
-				novoEndereco.setCep(textFieldTCadCli_Cep.getText());
+				//novoEndereco.setLogradouro(textFieldTCadCli_Logradouro.getText());
+				//novoEndereco.setNumero(Integer.parseInt(textFieldTCadCli_NumeroEndereco.getText()));
+				//novoEndereco.setBairro(textFieldTCadCli_Bairro.getText());
+				//novoEndereco.setCidade(textFieldTCadCli_Cidade.getText());
+				//novoEndereco.setEstado(comboBoxTCadCli_Estado.getSelectedItem().toString());
+				//novoEndereco.setCep(textFieldTCadCli_Cep.getText());
 				
 				//instanciando a Fachada para chamar o método cadastrar cliente
 				Fachada fachada = Fachada.getInstance();
 				
 				try {
 					fachada.cadastrarCliente(novoCliente);
+					JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+					GerenciadorDeTelas.fecharTelaCadastroClienteAbrindoTelaPrincipal();
 					//Obtendo o ID que está no BD do novo Cliente e setando para o Endereço
 					//novoEndereco.setIdCliente(novoCliente.getId());
 					//fachada.cadastrarEndereco(novoEndereco);

@@ -52,6 +52,8 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			}
 			cliente.setId(clienteId);
 
+			
+			
 			// Fechando conexões
 			preStatement.close();
 			resultSet.close();
