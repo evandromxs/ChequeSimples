@@ -17,6 +17,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class FrameLogin extends JFrame{
 
@@ -38,16 +41,44 @@ public class FrameLogin extends JFrame{
 		contentPaneTLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTLogin);
 		
-		JLabel lblUsuario = new JLabel("Usuario:");
+		JLabel lblTLogin_Usuario = new JLabel("Usuário:");
 		
-		JLabel lblSenha = new JLabel("Senha:");
+		JLabel lblTLogin_Senha = new JLabel("Senha:");
+		
+		JLabel lblTLogin_UsuarioOuSenha = new JLabel("Usuário e/ou senha incorretos");
+		lblTLogin_UsuarioOuSenha.setForeground(Color.RED);
+		lblTLogin_UsuarioOuSenha.setVisible(false);
 		
 		pwdTLogin_Senha = new JPasswordField();
+		pwdTLogin_Senha.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				pwdTLogin_Senha.setText("");
+				lblTLogin_UsuarioOuSenha.setVisible(false);
+			}
+		});
 		
 		txtTLogin_Usuario = new JTextField();
 		txtTLogin_Usuario.setColumns(10);
 		
+		JLabel lblTLogin_IconeChequeTela = new JLabel();
+		lblTLogin_IconeChequeTela.setIcon(new ImageIcon(FrameLogin.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon_G.png")));
+		
 		JButton btnTLogin_Ok = new JButton("OK");
+		btnTLogin_Ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(txtTLogin_Usuario.getText().equals("admin") && pwdTLogin_Senha.getText().equals("admin")){
+					try {
+						GerenciadorDeTelas.fecharTelaLogin();
+						GerenciadorDeTelas.abrirTelaPrincipal();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}else{
+					lblTLogin_UsuarioOuSenha.setVisible(true);
+				}
+			}
+		});
 		
 		JButton btnTLogin_Sair = new JButton("Sair");
 		btnTLogin_Sair.addActionListener(new ActionListener() {
@@ -55,21 +86,6 @@ public class FrameLogin extends JFrame{
 				System.exit(0);
 			}
 		});
-		
-		JButton btnTestar = new JButton("Testar");
-		btnTestar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					GerenciadorDeTelas.fecharTelaLogin();
-					GerenciadorDeTelas.abrirTelaPrincipal();
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
-		});
-		
-		JLabel lblIconeChequeTela = new JLabel("");
-		lblIconeChequeTela.setIcon(new ImageIcon(FrameLogin.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon_G.png")));
 		
 		GroupLayout gl_contentPaneTLogin = new GroupLayout(contentPaneTLogin);
 		gl_contentPaneTLogin.setHorizontalGroup(
@@ -79,45 +95,49 @@ public class FrameLogin extends JFrame{
 						.addGroup(gl_contentPaneTLogin.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblSenha)
-								.addComponent(lblUsuario))
+								.addComponent(lblTLogin_Senha)
+								.addComponent(lblTLogin_Usuario))
 							.addGap(18)
 							.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPaneTLogin.createSequentialGroup()
-									.addComponent(btnTLogin_Ok)
-									.addGap(18)
-									.addComponent(btnTLogin_Sair)
-									.addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-									.addComponent(btnTestar))
 								.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(txtTLogin_Usuario, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
 									.addGroup(gl_contentPaneTLogin.createSequentialGroup()
 										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(pwdTLogin_Senha))
-									.addComponent(txtTLogin_Usuario, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE))))
+										.addComponent(pwdTLogin_Senha)))
+								.addGroup(gl_contentPaneTLogin.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblTLogin_UsuarioOuSenha)
+										.addGroup(gl_contentPaneTLogin.createSequentialGroup()
+											.addComponent(btnTLogin_Ok)
+											.addGap(18)
+											.addComponent(btnTLogin_Sair)))))
+							.addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE))
 						.addGroup(gl_contentPaneTLogin.createSequentialGroup()
 							.addGap(46)
-							.addComponent(lblIconeChequeTela)))
+							.addComponent(lblTLogin_IconeChequeTela)))
 					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		gl_contentPaneTLogin.setVerticalGroup(
 			gl_contentPaneTLogin.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPaneTLogin.createSequentialGroup()
 					.addGap(28)
-					.addComponent(lblIconeChequeTela)
+					.addComponent(lblTLogin_IconeChequeTela)
 					.addGap(36)
 					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtTLogin_Usuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblUsuario))
+						.addComponent(lblTLogin_Usuario))
 					.addGap(21)
 					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSenha)
+						.addComponent(lblTLogin_Senha)
 						.addComponent(pwdTLogin_Senha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(39)
+					.addGap(18)
 					.addGroup(gl_contentPaneTLogin.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnTLogin_Ok)
-						.addComponent(btnTLogin_Sair)
-						.addComponent(btnTestar))
-					.addContainerGap(30, Short.MAX_VALUE))
+						.addComponent(btnTLogin_Sair))
+					.addGap(18)
+					.addComponent(lblTLogin_UsuarioOuSenha)
+					.addContainerGap(24, Short.MAX_VALUE))
 		);
 		contentPaneTLogin.setLayout(gl_contentPaneTLogin);
 	}
@@ -130,5 +150,4 @@ public class FrameLogin extends JFrame{
 			repaint();
 		} 
 	}
-	
 }
