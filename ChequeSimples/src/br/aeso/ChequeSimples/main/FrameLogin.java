@@ -1,7 +1,5 @@
 package br.aeso.ChequeSimples.main;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -41,6 +39,9 @@ public class FrameLogin extends JFrame{
 		contentPaneTLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneTLogin);
 		
+		JLabel lblTLogin_IconeChequeTela = new JLabel();
+		lblTLogin_IconeChequeTela.setIcon(new ImageIcon(FrameLogin.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon_G.png")));
+		
 		JLabel lblTLogin_Usuario = new JLabel("Usuário:");
 		
 		JLabel lblTLogin_Senha = new JLabel("Senha:");
@@ -61,16 +62,15 @@ public class FrameLogin extends JFrame{
 		txtTLogin_Usuario = new JTextField();
 		txtTLogin_Usuario.setColumns(10);
 		
-		JLabel lblTLogin_IconeChequeTela = new JLabel();
-		lblTLogin_IconeChequeTela.setIcon(new ImageIcon(FrameLogin.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon_G.png")));
-		
 		JButton btnTLogin_Ok = new JButton("OK");
 		btnTLogin_Ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(txtTLogin_Usuario.getText().equals("admin") && pwdTLogin_Senha.getText().equals("admin")){
+				// @GAMBIARRA ¬¬
+				String usuarioLogado = autenticaUsuario(txtTLogin_Usuario.getText(), pwdTLogin_Senha.getText()); 
+				if(usuarioLogado != null){
 					try {
 						GerenciadorDeTelas.fecharTelaLogin();
-						GerenciadorDeTelas.abrirTelaPrincipal();
+						GerenciadorDeTelas.iniciarTelaPrincipal(usuarioLogado);
 					} catch (Exception e2) {
 						e2.printStackTrace();
 					}
@@ -150,4 +150,15 @@ public class FrameLogin extends JFrame{
 			repaint();
 		} 
 	}
+	
+	public String autenticaUsuario(String login, String senha){
+		String usuarioLogado;
+		if((login.equalsIgnoreCase("admin")) && (senha.equalsIgnoreCase("admin"))){
+			usuarioLogado = new String("admin");
+		}else{
+			usuarioLogado = null;
+		}
+		return usuarioLogado;
+	}
+	
 }

@@ -3,6 +3,8 @@ package br.aeso.ChequeSimples.main;
 import java.awt.EventQueue;
 import java.text.ParseException;
 
+import javax.swing.JOptionPane;
+
 public class GerenciadorDeTelas {
 	
 	static FrameLogin frameLogin; 
@@ -27,7 +29,7 @@ public class GerenciadorDeTelas {
 		});
 	}
 	// Fim Main
-
+	
 	public static void abrirTelaLogin(){
 		if(frameLogin == null){
 			frameLogin = new FrameLogin();
@@ -39,9 +41,15 @@ public class GerenciadorDeTelas {
 		frameLogin.dispose();
 	}
 	
+	public static void iniciarTelaPrincipal(String usuarioLogado){
+		frameTelaPrincipal = new FrameTPrincipal(usuarioLogado);
+		frameTelaPrincipal.setVisible(true);
+	}
+	
 	public static void abrirTelaPrincipal(){
 		if(frameTelaPrincipal == null){
-			frameTelaPrincipal = new FrameTPrincipal();
+//			frameTelaPrincipal = new FrameTPrincipal();
+			JOptionPane.showConfirmDialog(null, "Erro. Reinicie o programa.", "Erro Abrir Tela Principal", 0);
 		}
 		frameTelaPrincipal.setVisible(true);
 	}

@@ -19,12 +19,21 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class FrameTPrincipal extends JFrame {
 
 	private JPanel contentPaneTPrinc;
-	private String funcionarioLogado;
+	private String usuarioLogado;
 	
+	public String getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(String usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+
 	/**
 	 * Create the frame.
 	 */
-	public FrameTPrincipal() {
+	public FrameTPrincipal(String usuario) {
+		this.usuarioLogado = usuario;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameTPrincipal.class.getResource("/br/aeso/ChequeSimples/files/chq_programIcon.png")));
 		setResizable(false);
 		setTitle("Tela Principal");
@@ -47,11 +56,14 @@ public class FrameTPrincipal extends JFrame {
 		JLabel lblTPrinc_IconeUsuario = new JLabel();
 		lblTPrinc_IconeUsuario.setIcon(new ImageIcon(FrameTPrincipal.class.getResource("/br/aeso/ChequeSimples/files/usr_icn.png")));
 		
-		funcionarioLogado = "Pesquisar como atribuir o nome do usuário ativo a esta variável.";
-		if(funcionarioLogado.length() > 50){
-			funcionarioLogado = funcionarioLogado.substring(0, 47) + new String("...");
+		if(this.usuarioLogado == null){
+			this.usuarioLogado = "Erro ao identificar usuário.";
 		}
-		JLabel lblTPrinc_UsuarioAtivo = new JLabel("Usuário Ativo: " + funcionarioLogado);
+		if(this.usuarioLogado.length() > 50){
+			this.usuarioLogado = usuarioLogado.substring(0, 47) + new String("...");
+		}
+		
+		JLabel lblTPrinc_UsuarioAtivo = new JLabel("Usuário Ativo: " + this.getUsuarioLogado());
 		lblTPrinc_UsuarioAtivo.setEnabled(false);
 		
 		JButton btnTPrinc_CadastrarCheque = new JButton("    Cadastrar Cheque");
