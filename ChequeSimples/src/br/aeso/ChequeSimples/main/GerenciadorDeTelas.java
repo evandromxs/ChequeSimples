@@ -72,6 +72,11 @@ public class GerenciadorDeTelas {
 		frameCadastroCheque.setVisible(true);
 	}
 	
+	public static void abrirTelaConsultaCheque() throws ParseException{
+		frameConsultaCheque = new FrameConsultaCheque();
+		frameConsultaCheque.setVisible(true);
+	}
+	
 	public static void fecharTelaCadastroCheque(){
 		frameCadastroCheque.dispose();
 	}

@@ -12,11 +12,10 @@ public class Cliente {
     private String cpf_cnpj;
     private String nome_razaoSocial;
     private byte bloqueado;
-    private int id_endereco;
-    private Endereco endereco;
     //private String dataCadastro = getDataHoje();
     
     public Cliente(String pessoa, String cpf_cnpj, String nomeRazaoSocial, byte bloqueado) {
+    	this.setId(null);
     	this.setPessoa(pessoa);
     	this.setCpf_cnpj(cpf_cnpj);
     	this.setNome_razaoSocial(nomeRazaoSocial);
@@ -51,11 +50,6 @@ public class Cliente {
 //    	this.cpf = cpf.replaceAll("\\.|\\-|\\ ", "");
 //    }
 
-//	@Override
-//	public String toString() {
-//		return "Cliente [id=" + id + ", nome=" + nome +", cpf=" + cpf +"]";
-//	}
-//	
 	public String getDataHoje() {
 		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = new Date();
@@ -95,19 +89,25 @@ public class Cliente {
 		this.bloqueado = bloqueado;
 	}
 
-	public int getId_endereco() {
-		return id_endereco;
-	}
+	//public int getId_endereco() {
+	//	return id_endereco;
+	//}
 
-	public void setId_endereco(int id_endereco) {
-		this.id_endereco = id_endereco;
-	}
+	//public void setId_endereco(int id_endereco) {
+	//	this.id_endereco = id_endereco;
+	//}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+	//public Endereco getEndereco() {
+	//	return endereco;
+	//}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	//public void setEndereco(Endereco endereco) {
+	//	this.endereco = endereco;
+	//}
+	
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", pessoa=" + pessoa + ", cpf_cnpj=" + cpf_cnpj + ", nome_razaoSocial="
+				+ nome_razaoSocial + ", bloqueado=" + bloqueado + "]\n";
 	}
 }

@@ -119,6 +119,16 @@ public class FrameTPrincipal extends JFrame {
 		});
 		
 		JButton btnTPrinc_PesquisarCheque = new JButton("    Pesquisar Cheque");
+		btnTPrinc_PesquisarCheque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					GerenciadorDeTelas.fecharTelaPrincipal();
+					GerenciadorDeTelas.abrirTelaConsultaCheque();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnTPrinc_PesquisarCheque.setIcon(new ImageIcon(FrameTPrincipal.class.getResource("/br/aeso/ChequeSimples/files/pesq_icn.png")));
 		
 		JButton btnTPrinc_PequisarBanco = new JButton("    Pequisar Banco");

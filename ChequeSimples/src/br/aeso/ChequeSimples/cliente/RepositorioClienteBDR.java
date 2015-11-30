@@ -55,9 +55,9 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			
 			
 			// Fechando conexões
-			preStatement.close();
-			resultSet.close();
-			conexao.close();
+			//preStatement.close();
+			//resultSet.close();
+			//conexao.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -84,7 +84,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 
 				// Fechando conexões
 				preStatement.close();
-				conexao.close();
+				//conexao.close();
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -106,7 +106,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 
 				// Fechando conexões
 				preStatement.close();
-				conexao.close();
+				//conexao.close();
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -116,21 +116,23 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 
 	@Override
 	public ArrayList<Cliente> listar() throws ClientesVazioException {
+		PreparedStatement preStatement = null;
+		ResultSet resultSet = null;
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 		if (listaVazia() == true) {
 			throw new ClientesVazioException();
 		} else {
 			try {
 				String sql = "select * from clientes";
-				PreparedStatement preStatement = conexao.prepareStatement(sql);
-				ResultSet resultSet = preStatement.executeQuery();
+				preStatement = conexao.prepareStatement(sql);
+				resultSet = preStatement.executeQuery();
 
 				while (resultSet.next()) {
 					Cliente cliente = new Cliente(null, null, null, (byte) 0);
 					cliente.setId(resultSet.getInt(1));
 					cliente.setPessoa(resultSet.getString(2));
 					cliente.setCpf_cnpj(resultSet.getString(3));
-					cliente.setPessoa(resultSet.getString(4));
+					cliente.setNome_razaoSocial(resultSet.getString(4));
 					cliente.setBloqueado(resultSet.getByte(5));
 
 					clientes.add(cliente);
@@ -139,7 +141,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 				// Fechando conexões
 				preStatement.close();
 				resultSet.close();
-				conexao.close();
+				//conexao.close();
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -173,7 +175,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 				// Fechando conexões
 				preStatement.close();
 				resultSet.close();
-				conexao.close();
+				//conexao.close();
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -230,7 +232,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			// Fechando conexões
 			preStatement.close();
 			resultSet.close();
-			conexao.close();
+			//conexao.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

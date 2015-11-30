@@ -36,22 +36,22 @@ import br.aeso.ChequeSimples.excecoes.TelefoneNaoEncontradoException;
 import br.aeso.ChequeSimples.excecoes.TelefonesVazioException;
 
 public class Fachada {
-	private static Fachada instance;
-	private ControladorBanco controladorBanco;
-	private ControladorCheque controladorCheque;
-	private ControladorCliente controladorCliente;
-	private ControladorFuncionario controladorFuncionario;
-	private ControladorEndereco controladorEndereco;
-	private ControladorTelefone controladorTelefone;
+	private static Fachada			instance;
+	private ControladorBanco		controladorBanco;
+	private ControladorCheque		controladorCheque;
+	private ControladorCliente		controladorCliente;
+	private ControladorFuncionario	controladorFuncionario;
+	private ControladorEndereco		controladorEndereco;
+	private ControladorTelefone		controladorTelefone;
 
 	
 	private Fachada() {
-		this.controladorBanco = new ControladorBanco();
-		this.controladorCheque = new ControladorCheque();
-		this.controladorCliente = new ControladorCliente();
+		this.controladorBanco		= new ControladorBanco();
+		this.controladorCheque		= new ControladorCheque();
+		this.controladorCliente 	= new ControladorCliente();
 		this.controladorFuncionario = new ControladorFuncionario();
-		this.controladorEndereco = new ControladorEndereco();
-		this.controladorTelefone = new ControladorTelefone();
+		this.controladorEndereco 	= new ControladorEndereco();
+		this.controladorTelefone	= new ControladorTelefone();
 	}
 	
 	public static Fachada getInstance() {
