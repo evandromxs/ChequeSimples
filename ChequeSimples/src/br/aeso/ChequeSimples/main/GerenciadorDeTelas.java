@@ -5,6 +5,8 @@ import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
+import br.aeso.ChequeSimples.excecoes.ClientesVazioException;
+
 public class GerenciadorDeTelas {
 	
 	static FrameLogin frameLogin; 
@@ -13,6 +15,7 @@ public class GerenciadorDeTelas {
 	static FrameCadastroBanco frameCadastroBanco;
 	static FrameCadastroCliente frameCadastroCliente;
 	static FrameCadastroUsuario frameCadastroUsuario;
+	static FrameConsultaCheque frameConsultaCheque;
 	
 	/**
 	 * Launch the application.
@@ -72,7 +75,7 @@ public class GerenciadorDeTelas {
 		frameCadastroCheque.setVisible(true);
 	}
 	
-	public static void abrirTelaConsultaCheque() throws ParseException{
+	public static void abrirTelaConsultaCheque() throws ParseException, ClientesVazioException{
 		frameConsultaCheque = new FrameConsultaCheque();
 		frameConsultaCheque.setVisible(true);
 	}
