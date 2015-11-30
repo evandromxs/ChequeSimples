@@ -14,15 +14,42 @@ import br.aeso.ChequeSimples.excecoes.ClientesVazioException;
 
 public class RepositorioClienteBDR implements IRepositorioCliente {
 	private Connection conexao;
+	private Boolean indDriverCarregado;
 
 	public RepositorioClienteBDR() {
+		this.indDriverCarregado = false;
+	}
+
+	private Connection getConexao() {
+		if (!indDriverCarregado) {
+			indDriverCarregado = true;
+		}
 		try {
-			conexao = DriverManager.getConnection("jdbc:mysql://localhost/chequesimplesbdr", "root", "root");
+			return conexao = DriverManager.getConnection("jdbc:mysql://localhost/chequesimplesbdr", "root", "root");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	private void fechaRecursos(Connection conexao, PreparedStatement preStatement, ResultSet resultSet) {
 
+		try {
+			if (resultSet != null)
+				resultSet.close();
+		} catch (Exception e) {
+		}
+		try {
+			if (preStatement != null)
+				preStatement.close();
+		} catch (Exception e) {
+		}
+		try {
+			if (conexao != null)
+				conexao.close();
+		} catch (Exception e) {
+		}
+	}
+	
 	@Override
 	public void cadastrar(Cliente cliente) throws ClienteJaCadastradoException {
 		// Verifica se o cliente já existe no repositório
@@ -32,6 +59,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 		String sql = "insert into clientes (pessoa, cpf_cnpj, nome_razaoSocial, bloqueado) values (?, ?, ?, ?)";
 
 		// Criar o PreparedStatement, objeto para executar a query
+		Connection conexao = getConexao();
 		PreparedStatement preStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -55,9 +83,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			
 			
 			// Fechando conexões
-			//preStatement.close();
-			//resultSet.close();
-			//conexao.close();
+			fechaRecursos(conexao, preStatement, resultSet);
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -71,6 +97,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			throw new ClienteNaoEncontradoException();
 		} else {
 			try {
+				Connection conexao = getConexao();
 				String sql = "update cliente set pessoa = ?, cpf_cnpj = ?, nome_razaoSocial = ?, bloqueado = ? where idCliente = ?";
 				PreparedStatement preStatement = conexao.prepareStatement(sql);
 				
@@ -83,8 +110,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 				preStatement.executeUpdate();
 
 				// Fechando conexões
-				preStatement.close();
-				//conexao.close();
+				fechaRecursos(conexao, preStatement, null);
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -99,14 +125,14 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			throw new ClienteNaoEncontradoException();
 		} else {
 			try {
+				Connection conexao = getConexao();
 				String sql = "delete from clientes where cliente_id = ?";
 				PreparedStatement preStatement = conexao.prepareStatement(sql);
 				preStatement.setInt(1, i);
 				preStatement.executeUpdate();
 
 				// Fechando conexões
-				preStatement.close();
-				//conexao.close();
+				fechaRecursos(conexao, preStatement, null);
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -123,6 +149,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			throw new ClientesVazioException();
 		} else {
 			try {
+				Connection conexao = getConexao();
 				String sql = "select * from clientes";
 				preStatement = conexao.prepareStatement(sql);
 				resultSet = preStatement.executeQuery();
@@ -139,9 +166,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 				}
 
 				// Fechando conexões
-				preStatement.close();
-				resultSet.close();
-				//conexao.close();
+				fechaRecursos(conexao, preStatement, resultSet);
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -159,6 +184,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			throw new ClienteNaoEncontradoException();
 		} else {
 			try {
+				Connection conexao = getConexao();
 				String sql = "select * from clientes where cpf_cnpj = ?";
 				PreparedStatement preStatement = conexao.prepareStatement(sql);
 				preStatement.setString(1, cpf_cnpj);
@@ -173,9 +199,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 				}
 
 				// Fechando conexões
-				preStatement.close();
-				resultSet.close();
-				//conexao.close();
+				fechaRecursos(conexao, preStatement, resultSet);
 
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
@@ -199,6 +223,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 		int resposta = -1;
 
 		try {
+			Connection conexao = getConexao();
 			String sql = "select * from clientes where cpf_cnpj = ?";
 			PreparedStatement preStatement = conexao.prepareStatement(sql);
 			preStatement.setString(1, cpf_cnpj);
@@ -209,8 +234,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			}
 
 			// Fechando conexões
-			preStatement.close();
-			resultSet.close();
+			fechaRecursos(conexao, preStatement, resultSet);
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -221,6 +245,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 	public boolean listaVazia() {
 		boolean resposta = false;
 		try {
+			Connection conexao = getConexao();
 			String sql = "select * from clientes";
 			PreparedStatement preStatement = conexao.prepareStatement(sql);
 			ResultSet resultSet = preStatement.executeQuery();
@@ -230,9 +255,7 @@ public class RepositorioClienteBDR implements IRepositorioCliente {
 			}
 
 			// Fechando conexões
-			preStatement.close();
-			resultSet.close();
-			//conexao.close();
+			fechaRecursos(conexao, preStatement, resultSet);
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
