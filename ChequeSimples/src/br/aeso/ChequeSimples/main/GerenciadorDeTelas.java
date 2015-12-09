@@ -2,9 +2,7 @@ package br.aeso.ChequeSimples.main;
 
 import java.awt.EventQueue;
 import java.text.ParseException;
-
 import javax.swing.JOptionPane;
-
 import br.aeso.ChequeSimples.excecoes.ClientesVazioException;
 
 public class GerenciadorDeTelas {

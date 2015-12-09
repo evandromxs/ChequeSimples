@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class FrameLogin extends JFrame{
 
@@ -61,6 +63,16 @@ public class FrameLogin extends JFrame{
 		
 		txtTLogin_Usuario = new JTextField();
 		txtTLogin_Usuario.setColumns(10);
+		txtTLogin_Usuario.addKeyListener(new KeyAdapter() {
+			int cont = 0;
+			@Override
+			public void keyPressed(KeyEvent evt) {
+				if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+		            System.out.println("Apertei ENTER! " + cont++);
+		            
+		        } 
+			}
+		});
 		
 		JButton btnTLogin_Ok = new JButton("OK");
 		btnTLogin_Ok.addActionListener(new ActionListener() {

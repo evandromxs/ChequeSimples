@@ -34,7 +34,7 @@ public class FrameCadastroCliente extends JFrame {
 	private JTextField textFieldTCadCli_Telefone;
 	private MaskFormatter mascaraCep;
 	private MaskFormatter mascaraTelefone;
-
+	
 	/**
 	 * Create the frame.
 	 * @throws ParseException 
@@ -74,7 +74,7 @@ public class FrameCadastroCliente extends JFrame {
 		JLabel lblTCadCli_Cep = new JLabel("CEP:");
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
-
+		
 		textFieldTCadCli_NomeRazao = new JTextField("Digite o nome ou razão social");
 		textFieldTCadCli_NomeRazao.setForeground(Color.GRAY);
 		textFieldTCadCli_NomeRazao.setColumns(10);
@@ -160,6 +160,10 @@ public class FrameCadastroCliente extends JFrame {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				} catch (CPFInvalidoException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
+				} catch (Exception e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null,"Erro ao cadastrar. Tente novamente.");
+					repaint();
 				} //catch (EnderecoJaCadastradoException e) {
 					//JOptionPane.showMessageDialog(null, e.getMessage());
 				//}
